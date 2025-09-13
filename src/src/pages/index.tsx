@@ -127,6 +127,11 @@ export default function Home() {
         <div className="aurora-form-container">
           <h1 className="aurora-title">aurora</h1>
           
+          {/* Page Title */}
+          <h2 className="aurora-page-title">
+            {isLogin ? 'Sign In' : 'Create Account'}
+          </h2>
+          
           <form onSubmit={handleAuth} className="aurora-form">
             <input
               type="email"
@@ -144,13 +149,17 @@ export default function Home() {
               required
               className="aurora-input"
             />
-            <button
-              type="submit"
-              disabled={loading}
-              className="aurora-submit-button"
-            >
-              {loading ? 'Loading...' : (isLogin ? 'Sign In' : 'Sign Up')}
-            </button>
+            
+            {/* Centered Submit Button */}
+            <div className="aurora-submit-container">
+              <button
+                type="submit"
+                disabled={loading}
+                className="aurora-submit-button"
+              >
+                {loading ? 'Loading...' : (isLogin ? 'Sign In' : 'Create Account')}
+              </button>
+            </div>
           </form>
 
           <button
@@ -161,7 +170,7 @@ export default function Home() {
             className="aurora-toggle-button"
           >
             {isLogin 
-              ? "Don't have an account? Sign up" 
+              ? "Don't have an account? Create one" 
               : "Already have an account? Sign in"
             }
           </button>

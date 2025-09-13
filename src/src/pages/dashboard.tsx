@@ -32,17 +32,29 @@ interface NavItem {
 // Mock data for the Aurora dashboard
 const pointsData = [
   { month: 'Jan', value: 120 },
+  { month: 'Jan', value: 125 },
   { month: 'Feb', value: 135 },
+  { month: 'Feb', value: 130 },
   { month: 'Mar', value: 98 },
+  { month: 'Mar', value: 105 },
   { month: 'Apr', value: 145 },
+  { month: 'Apr', value: 150 },
   { month: 'May', value: 160 },
+  { month: 'May', value: 155 },
   { month: 'Jun', value: 140 },
+  { month: 'Jun', value: 145 },
   { month: 'Jul', value: 175 },
+  { month: 'Jul', value: 180 },
   { month: 'Aug', value: 190 },
+  { month: 'Aug', value: 185 },
   { month: 'Sep', value: 165 },
+  { month: 'Sep', value: 170 },
   { month: 'Oct', value: 200 },
+  { month: 'Oct', value: 195 },
   { month: 'Nov', value: 185 },
+  { month: 'Nov', value: 190 },
   { month: 'Dec', value: 220 },
+  { month: 'Dec', value: 215 },
 ]
 
 const progressData = [
@@ -165,10 +177,10 @@ export default function Dashboard() {
     const range = maxValue - minValue
     
     return (
-      <div className="points-chart-container">
+      <div className="points-chart-left">
         <h2 className="points-chart-title">Your Points This Year!</h2>
         <div className="points-chart-svg-container">
-          <svg className="points-chart-svg" viewBox="0 0 400 200">
+          <svg className="points-chart-svg" viewBox="0 0 300 200">
             <defs>
               <linearGradient id="pointsGradient" x1="0%" y1="0%" x2="0%" y2="100%">
                 <stop offset="0%" stopColor="#EF4444" stopOpacity="0.3" />
@@ -182,7 +194,7 @@ export default function Dashboard() {
                 key={i}
                 x1="0"
                 y1={i * 40}
-                x2="400"
+                x2="300"
                 y2={i * 40}
                 stroke="#f3f4f6"
                 strokeWidth="1"
@@ -190,21 +202,25 @@ export default function Dashboard() {
               />
             ))}
             
-            {/* Baseline */}
-            <line
-              x1="0"
-              y1="180"
-              x2="400"
-              y2="180"
-              stroke="#000000"
-              strokeWidth="2"
-              className="points-chart-baseline"
-            />
+            {/* X-axis labels */}
+            {pointsData.filter((_, i) => i % 2 === 0).map((d, i) => (
+              <text
+                key={i}
+                x={(i * 2 / (pointsData.length - 1)) * 300}
+                y="195"
+                fontSize="10"
+                fill="#6b7280"
+                textAnchor="middle"
+                className="points-chart-x-label"
+              >
+                {d.month}
+              </text>
+            ))}
             
             {/* Line path */}
             <path
               d={`M ${pointsData.map((d, i) => 
-                `${(i / (pointsData.length - 1)) * 400},${200 - ((d.value - minValue) / range) * 180}`
+                `${(i / (pointsData.length - 1)) * 300},${200 - ((d.value - minValue) / range) * 180}`
               ).join(' L ')}`}
               fill="none"
               stroke="#EF4444"
@@ -215,8 +231,8 @@ export default function Dashboard() {
             {/* Fill area */}
             <path
               d={`M ${pointsData.map((d, i) => 
-                `${(i / (pointsData.length - 1)) * 400},${200 - ((d.value - minValue) / range) * 180}`
-              ).join(' L ')} L 400,200 L 0,200 Z`}
+                `${(i / (pointsData.length - 1)) * 300},${200 - ((d.value - minValue) / range) * 180}`
+              ).join(' L ')} L 300,200 L 0,200 Z`}
               fill="url(#pointsGradient)"
               className="points-chart-area"
             />
@@ -225,7 +241,7 @@ export default function Dashboard() {
             {pointsData.map((d, i) => (
               <circle
                 key={i}
-                cx={(i / (pointsData.length - 1)) * 400}
+                cx={(i / (pointsData.length - 1)) * 300}
                 cy={200 - ((d.value - minValue) / range) * 180}
                 r="4"
                 fill="#EF4444"
@@ -233,6 +249,106 @@ export default function Dashboard() {
               />
             ))}
           </svg>
+        </div>
+      </div>
+    )
+  }
+
+  const ActivityChart = () => {
+    // Generate mock activity data for the current month only
+    const generateActivityData = () => {
+      const data = []
+      const today = new Date()
+      const currentMonth = today.getMonth()
+      const currentYear = today.getFullYear()
+      
+      // Get first day of current month
+      const firstDay = new Date(currentYear, currentMonth, 1)
+      // Get last day of current month
+      const lastDay = new Date(currentYear, currentMonth + 1, 0)
+      
+      for (let d = new Date(firstDay); d <= lastDay; d.setDate(d.getDate() + 1)) {
+        const dayOfWeek = d.getDay()
+        const isWeekend = dayOfWeek === 0 || dayOfWeek === 6
+        const activityLevel = isWeekend ? Math.random() * 0.3 : Math.random()
+        
+        data.push({
+          date: new Date(d),
+          level: activityLevel
+        })
+      }
+      return data
+    }
+
+    const activityData = generateActivityData()
+    const weeks = Math.ceil(activityData.length / 7)
+    
+    const getActivityColor = (level: number) => {
+      if (level === 0) return '#1f2937'
+      if (level < 0.25) return '#ff5630'
+      if (level < 0.5) return '#ff7a5c'
+      if (level < 0.75) return '#ff9a8b'
+      return '#ffb3a6'
+    }
+
+    const getMonthName = () => {
+      const today = new Date()
+      return today.toLocaleDateString('en-US', { month: 'long', year: 'numeric' })
+    }
+
+    return (
+      <div className="activity-chart-right">
+        <h2 className="activity-chart-title">Daily Activity - {getMonthName()}</h2>
+        <div className="activity-chart-container">
+          <div className="activity-chart-grid">
+            {/* Day labels */}
+            <div className="activity-day-labels">
+              <span>S</span>
+              <span>M</span>
+              <span>T</span>
+              <span>W</span>
+              <span>T</span>
+              <span>F</span>
+              <span>S</span>
+            </div>
+            
+            {/* Activity grid */}
+            <div className="activity-grid">
+              {Array.from({ length: 7 }, (_, dayIndex) => (
+                <div key={dayIndex} className="activity-week-column">
+                  {Array.from({ length: weeks }, (_, weekIndex) => {
+                    const dataIndex = weekIndex * 7 + dayIndex
+                    const dayData = activityData[dataIndex]
+                    const isToday = dayData && dayData.date.toDateString() === new Date().toDateString()
+                    
+                    return (
+                      <div
+                        key={weekIndex}
+                        className={`activity-day ${isToday ? 'activity-today' : ''}`}
+                        style={{
+                          backgroundColor: dayData ? getActivityColor(dayData.level) : '#1f2937'
+                        }}
+                        title={dayData ? `${dayData.date.toLocaleDateString()}: ${Math.round(dayData.level * 100)}% activity` : ''}
+                      />
+                    )
+                  })}
+                </div>
+              ))}
+            </div>
+          </div>
+          
+          {/* Legend */}
+          <div className="activity-legend">
+            <span className="activity-legend-text">Less</span>
+            <div className="activity-legend-colors">
+              <div className="activity-legend-color" style={{ backgroundColor: '#1f2937' }}></div>
+              <div className="activity-legend-color" style={{ backgroundColor: '#ff5630' }}></div>
+              <div className="activity-legend-color" style={{ backgroundColor: '#ff7a5c' }}></div>
+              <div className="activity-legend-color" style={{ backgroundColor: '#ff9a8b' }}></div>
+              <div className="activity-legend-color" style={{ backgroundColor: '#ffb3a6' }}></div>
+            </div>
+            <span className="activity-legend-text">More</span>
+          </div>
         </div>
       </div>
     )
@@ -348,9 +464,10 @@ export default function Dashboard() {
             </div>
           </div>
 
-          {/* Points Chart */}
-          <div className="aurora-points-section">
+          {/* Points Chart and Activity Chart */}
+          <div className="aurora-charts-section">
             <PointsChart />
+            <ActivityChart />
           </div>
 
           {/* Progress Donut Charts */}
