@@ -180,18 +180,22 @@ return (
 
         <div className="sidebar-nav">
           <div className="sidebar-nav-list">
-            <div>
+            <a href="/dashboard" className="sidebar-nav-item">
               <HomeIcon className="sidebar-nav-icon" />
               {!sidebarCollapsed && <span>Home</span>}
-            </div>
-            <div>
+            </a>
+            <a href="/daily_challenges" className="sidebar-nav-item sidebar-nav-item-active">
+              <ChartBarIcon className="sidebar-nav-icon" />
+              {!sidebarCollapsed && <span>Daily Challenges</span>}
+            </a>
+            <a href="#" className="sidebar-nav-item">
               <ChartBarIcon className="sidebar-nav-icon" />
               {!sidebarCollapsed && <span>Experience</span>}
-            </div>
-            <div>
+            </a>
+            <a href="/learn" className="sidebar-nav-item">
               <AcademicCapIcon className="sidebar-nav-icon" />
               {!sidebarCollapsed && <span>Learn</span>}
-            </div>
+            </a>
           </div>
         </div>
 

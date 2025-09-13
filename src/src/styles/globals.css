@@ -450,20 +450,30 @@
   margin: 0;
 }
 
-.sidebar-nav-link {
+.sidebar-nav-item {
   display: flex;
   align-items: center;
   gap: 0.75rem;
   padding: 0.5rem 0.75rem;
   border-radius: 0.5rem;
+  color: rgb(75 85 99);
   text-decoration: none;
   transition: all 0.15s ease;
 }
 
-.sidebar-nav-link-active {
+.sidebar-nav-item:hover {
+  background-color: rgb(243 244 246);
+}
+
+
+.sidebar-nav-item-active {
   background-color: #FF5630;
   color: rgb(255 255 255);
   box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+}
+
+.sidebar-nav-item-active:hover {
+  background-color: #E8471C;
 }
 
 .sidebar-nav-link-inactive {
@@ -956,6 +966,55 @@
   background: linear-gradient(90deg, #FF5630 0%, #FF7A5C 100%);
   border-radius: 4px;
   transition: width 1s ease-in-out;
+}
+
+/* Sidebar Navigation - Fixed Styling */
+.sidebar-nav {
+  flex: 1;
+  padding: 1rem;
+}
+
+.sidebar-nav-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.sidebar-nav-list > div {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.5rem 0.75rem;
+  border-radius: 0.5rem;
+  color: rgb(75 85 99);
+  cursor: pointer;
+  transition: all 0.15s ease;
+  text-decoration: none;
+}
+
+.sidebar-nav-list > div:hover {
+  background-color: rgb(243 244 246);
+}
+
+.dashboard-container.dark .sidebar-nav-list > div {
+  color: rgb(209 213 219);
+}
+
+.dashboard-container.dark .sidebar-nav-list > div:hover {
+  background-color: rgb(75 85 99);
+}
+
+.sidebar-nav-icon {
+  width: 1.25rem;
+  height: 1.25rem;
+}
+
+.sidebar-nav-list span {
+  font-size: 0.875rem;
+  font-weight: 500;
 }
 
 /* Challenge Card */
