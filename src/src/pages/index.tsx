@@ -1,17 +1,5 @@
 import { useState, useEffect } from 'react'
-import Image from "next/image"
-import { Geist, Geist_Mono } from "next/font/google"
 import { supabase } from '../lib/supabase'
-
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
-})
-
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
-})
 
 interface User {
   id: string
@@ -61,7 +49,6 @@ export default function Home() {
         })
         if (error) throw error
         setMessage('Successfully signed in!')
-        window.location.href = '/dashboard'
       } else {
         // Sign up
         const { error } = await supabase.auth.signUp({
@@ -89,162 +76,91 @@ export default function Home() {
 
   if (loading) {
     return (
-      <div className={`${geistSans.className} ${geistMono.className} loading-container`}>
-        <div className="loading-text">Loading...</div>
+      <div className="aurora-loading">
+        <div className="aurora-loading-text">Loading...</div>
       </div>
     )
   }
 
   return (
-    <div className={`${geistSans.className} ${geistMono.className} main-container`}>
-      <main className="main-content">
-        <Image
-          className="logo"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-
-        {user ? (
-          // User is logged in
-          <div className="welcome-section">
-            <h1 className="welcome-title">Welcome back!</h1>
-            <p className="welcome-email">
+    <div className={`aurora-container ${isLogin ? 'signin-mode' : 'create-account-mode'}`}>
+      {user ? (
+        // User is logged in
+        <div className="aurora-welcome-container">
+          <h1 className="aurora-title">aurora</h1>
+          <div className="text-center">
+            <h2 className="aurora-welcome-title">Welcome back!</h2>
+            <p className="aurora-welcome-email">
               Logged in as: {user.email}
             </p>
-            <button
-              onClick={handleSignOut}
-              className="signout-button"
-            >
-              Sign Out
-            </button>
-            {message && (
-              <p className="success-message">
-                {message}
-              </p>
-            )}
           </div>
-        ) : (
-          // User is not logged in - show auth form
-          <div className="auth-section">
-            <h1 className="auth-title">
-              {isLogin ? 'Sign In' : 'Create Account'}
-            </h1>
-            
-            <form onSubmit={handleAuth} className="auth-form">
-              <input
-                type="email"
-                placeholder="Email"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                required
-                className="auth-input"
-              />
-              <input
-                type="password"
-                placeholder="Password"
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-                required
-                className="auth-input"
-              />
-              <button
-                type="submit"
-                disabled={loading}
-                className="auth-submit-button"
-              >
-                {loading ? 'Loading...' : (isLogin ? 'Sign In' : 'Sign Up')}
-              </button>
-            </form>
-
+          <button
+            onClick={handleSignOut}
+            className="aurora-signout-button"
+          >
+            Sign Out
+          </button>
+          {message && (
+            <p className="aurora-message aurora-success-message">
+              {message}
+            </p>
+          )}
+        </div>
+      ) : (
+        // User is not logged in - show auth form
+        <div className="aurora-form-container">
+          <h1 className="aurora-title">aurora</h1>
+          
+          <form onSubmit={handleAuth} className="aurora-form">
+            <input
+              type="email"
+              placeholder="Email..."
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              required
+              className="aurora-input"
+            />
+            <input
+              type="password"
+              placeholder="Password..."
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              required
+              className="aurora-input"
+            />
             <button
-              onClick={() => {
-                setIsLogin(!isLogin)
-                setMessage('')
-              }}
-              className="auth-toggle-button"
+              type="submit"
+              disabled={loading}
+              className="aurora-submit-button"
             >
-              {isLogin 
-                ? "Don't have an account? Sign up" 
-                : "Already have an account? Sign in"
-              }
+              {loading ? 'Loading...' : (isLogin ? 'Sign In' : 'Sign Up')}
             </button>
+          </form>
 
-            {message && (
-              <p className={`auth-message ${
-                message.includes('error') || message.includes('Error') 
-                  ? 'error-message' 
-                  : 'success-message'
-              }`}>
-                {message}
-              </p>
-            )}
-          </div>
-        )}
+          <button
+            onClick={() => {
+              setIsLogin(!isLogin)
+              setMessage('')
+            }}
+            className="aurora-toggle-button"
+          >
+            {isLogin 
+              ? "Don't have an account? Sign up" 
+              : "Already have an account? Sign in"
+            }
+          </button>
 
-        <ol className="instructions-list">
-          <li className="instruction-item">
-            Get started by editing{" "}
-            <code className="code-highlight">
-              src/pages/index.tsx
-            </code>
-            .
-          </li>
-          <li className="instruction-item-last">
-            Save and see your changes instantly.
-          </li>
-        </ol>
-      </main>
-      
-      <footer className="footer">
-        <a
-          className="footer-link"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=default-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="footer-link"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=default-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="footer-link"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=default-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
+          {message && (
+            <p className={`aurora-message ${
+              message.includes('error') || message.includes('Error') 
+                ? 'aurora-error-message' 
+                : 'aurora-success-message'
+            }`}>
+              {message}
+            </p>
+          )}
+        </div>
+      )}
     </div>
   )
 }

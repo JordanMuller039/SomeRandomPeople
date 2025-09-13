@@ -1,6 +1,270 @@
-/* Add this to your existing globals.css file */
+@import url('https://fonts.googleapis.com/css2?family=Afacad:wght@400;500;600;700&display=swap');
 
-/* Loading Screen */
+/* Aurora Sign-in Page Styles */
+.aurora-container {
+  font-family: 'Afacad', sans-serif;
+  min-height: 100vh;
+  background-color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background-color 0.3s ease;
+}
+
+/* Sign In Mode - Orange theme */
+.aurora-container.signin-mode {
+  background-color: white;
+}
+
+/* Create Account Mode - Inverted theme */
+.aurora-container.create-account-mode {
+  background-color: #ff5630;
+}
+
+.aurora-loading {
+  font-family: 'Afacad', sans-serif;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  background-color: white;
+}
+
+.aurora-loading-text {
+  font-size: 1.125rem;
+  color: #ff5630;
+}
+
+.aurora-form-container {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  align-items: center;
+  max-width: 28rem;
+  width: 100%;
+  padding: 2rem;
+}
+
+/* Sign In Mode - Orange title on white background */
+.aurora-container.signin-mode .aurora-title {
+  font-size: 1.875rem;
+  font-weight: 400;
+  color: #ff5630;
+  margin: 0;
+  text-transform: lowercase;
+}
+
+/* Create Account Mode - White title on orange background */
+.aurora-container.create-account-mode .aurora-title {
+  font-size: 1.875rem;
+  font-weight: 400;
+  color: white;
+  margin: 0;
+  text-transform: lowercase;
+}
+
+.aurora-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  width: 100%;
+}
+
+/* Sign In Mode - Orange borders on white background */
+.aurora-container.signin-mode .aurora-input {
+  width: 100%;
+  padding: 0.75rem 1rem;
+  border: 1px solid #ff5630;
+  border-radius: 0.375rem;
+  background-color: white;
+  color: #333;
+  font-family: 'Afacad', sans-serif;
+  font-size: 0.875rem;
+  font-weight: 400;
+  outline: none;
+  transition: all 0.2s ease;
+}
+
+.aurora-container.signin-mode .aurora-input:focus {
+  border-color: #ff5630;
+  box-shadow: 0 0 0 2px rgba(255, 86, 48, 0.1);
+}
+
+.aurora-container.signin-mode .aurora-input::placeholder {
+  color: #cccccc;
+}
+
+/* Create Account Mode - White borders on orange background */
+.aurora-container.create-account-mode .aurora-input {
+  width: 100%;
+  padding: 0.75rem 1rem;
+  border: 1px solid white;
+  border-radius: 0.375rem;
+  background-color: #ff5630;
+  color: white;
+  font-family: 'Afacad', sans-serif;
+  font-size: 0.875rem;
+  font-weight: 400;
+  outline: none;
+  transition: all 0.2s ease;
+}
+
+.aurora-container.create-account-mode .aurora-input:focus {
+  border-color: white;
+  box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.2);
+}
+
+.aurora-container.create-account-mode .aurora-input::placeholder {
+  color: rgba(255, 255, 255, 0.7);
+}
+
+/* Sign In Mode - Orange button with white text on hover */
+.aurora-container.signin-mode .aurora-submit-button {
+  width: 100%;
+  padding: 0.75rem 1.5rem;
+  border: 1px solid #ff5630;
+  border-radius: 0.375rem;
+  background-color: transparent;
+  color: #ff5630;
+  font-family: 'Afacad', sans-serif;
+  font-size: 0.875rem;
+  font-weight: 400;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  outline: none;
+}
+
+.aurora-container.signin-mode .aurora-submit-button:hover:not(:disabled) {
+  background-color: #ff5630;
+  color: white;
+}
+
+.aurora-container.signin-mode .aurora-submit-button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* Create Account Mode - White button with orange text on hover */
+.aurora-container.create-account-mode .aurora-submit-button {
+  width: 100%;
+  padding: 0.75rem 1.5rem;
+  border: 1px solid white;
+  border-radius: 0.375rem;
+  background-color: transparent;
+  color: white;
+  font-family: 'Afacad', sans-serif;
+  font-size: 0.875rem;
+  font-weight: 400;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  outline: none;
+}
+
+.aurora-container.create-account-mode .aurora-submit-button:hover:not(:disabled) {
+  background-color: white;
+  color: #ff5630;
+}
+
+.aurora-container.create-account-mode .aurora-submit-button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* Sign In Mode - Gray toggle button */
+.aurora-container.signin-mode .aurora-toggle-button {
+  background: none;
+  border: none;
+  color: #cccccc;
+  font-family: 'Afacad', sans-serif;
+  font-size: 0.875rem;
+  font-weight: 400;
+  cursor: pointer;
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.aurora-container.signin-mode .aurora-toggle-button:hover {
+  text-decoration: underline;
+}
+
+/* Create Account Mode - Light gray toggle button */
+.aurora-container.create-account-mode .aurora-toggle-button {
+  background: none;
+  border: none;
+  color: rgba(255, 255, 255, 0.8);
+  font-family: 'Afacad', sans-serif;
+  font-size: 0.875rem;
+  font-weight: 400;
+  cursor: pointer;
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.aurora-container.create-account-mode .aurora-toggle-button:hover {
+  text-decoration: underline;
+  color: white;
+}
+
+.aurora-message {
+  font-family: 'Afacad', sans-serif;
+  font-size: 0.875rem;
+  text-align: center;
+  margin: 0;
+}
+
+.aurora-success-message {
+  color: #22c55e;
+}
+
+.aurora-error-message {
+  color: #ef4444;
+}
+
+/* Welcome Section for Logged-in Users */
+.aurora-welcome-container {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  align-items: center;
+  max-width: 28rem;
+  width: 100%;
+  padding: 2rem;
+}
+
+.aurora-welcome-title {
+  font-size: 1.5rem;
+  font-weight: 400;
+  color: #333;
+  margin: 0;
+}
+
+.aurora-welcome-email {
+  font-size: 0.875rem;
+  color: #cccccc;
+  margin: 0;
+}
+
+.aurora-signout-button {
+  width: 100%;
+  padding: 0.75rem 1.5rem;
+  border: 1px solid #ff5630;
+  border-radius: 0.375rem;
+  background-color: transparent;
+  color: #ff5630;
+  font-family: 'Afacad', sans-serif;
+  font-size: 0.875rem;
+  font-weight: 400;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  outline: none;
+}
+
+.aurora-signout-button:hover {
+  background-color: #ff5630;
+  color: white;
+}
+
+/* Legacy styles for existing components */
 .loading-container {
   font-family: sans-serif;
   display: flex;
@@ -14,7 +278,6 @@
   line-height: 1.75rem;
 }
 
-/* Main Container */
 .main-container {
   font-family: sans-serif;
   display: grid;
@@ -33,7 +296,6 @@
   }
 }
 
-/* Main Content */
 .main-content {
   display: flex;
   flex-direction: column;
@@ -48,7 +310,6 @@
   }
 }
 
-/* Logo */
 .logo {
   /* Add any additional logo styles here */
 }
@@ -59,7 +320,6 @@
   }
 }
 
-/* Welcome Section */
 .welcome-section {
   display: flex;
   flex-direction: column;
@@ -117,7 +377,6 @@
   background-color: rgb(185 28 28);
 }
 
-/* Auth Section */
 .auth-section {
   display: flex;
   flex-direction: column;
@@ -253,7 +512,6 @@
   }
 }
 
-/* Instructions List */
 .instructions-list {
   font-family: ui-monospace, SFMono-Regular, "SF Mono", Consolas, "Liberation Mono", Menlo, monospace;
   list-style-position: inside;
@@ -295,7 +553,6 @@
   }
 }
 
-/* Footer */
 .footer {
   grid-row-start: 3;
   display: flex;
@@ -320,11 +577,7 @@
   text-underline-offset: 4px;
 }
 
-/* ========================================
-   DASHBOARD STYLES
-   ======================================== */
-
-/* Dashboard Container */
+/* Dashboard styles remain the same */
 .dashboard-container {
   min-height: 100vh;
   background-color: rgb(249 250 251);
@@ -337,7 +590,6 @@
   background-color: rgb(17 24 39);
 }
 
-/* Dashboard Loading */
 .dashboard-loading {
   display: flex;
   align-items: center;
@@ -367,7 +619,6 @@
   }
 }
 
-/* Sidebar */
 .sidebar {
   position: fixed;
   top: 0;
@@ -399,7 +650,6 @@
   height: 100%;
 }
 
-/* Sidebar Header */
 .sidebar-header {
   display: flex;
   align-items: center;
@@ -448,7 +698,6 @@
   height: 1.25rem;
 }
 
-/* Sidebar Profile */
 .sidebar-profile {
   padding: 1rem;
   border-bottom: 1px solid rgb(229 231 235);
@@ -502,7 +751,6 @@
   color: rgb(156 163 175);
 }
 
-/* Sidebar Navigation */
 .sidebar-nav {
   flex: 1 1 0%;
   padding: 1rem;
@@ -565,7 +813,6 @@
   font-weight: 500;
 }
 
-/* Sidebar Actions */
 .sidebar-actions {
   padding: 1rem;
   border-top: 1px solid rgb(229 231 235);
@@ -647,7 +894,6 @@
   font-weight: 500;
 }
 
-/* Main Content */
 .main-content {
   transition-property: all;
   transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
@@ -666,7 +912,6 @@
   padding: 2rem;
 }
 
-/* Welcome Section */
 .welcome-section {
   margin-bottom: 2rem;
 }
@@ -691,12 +936,10 @@
   color: rgb(156 163 175);
 }
 
-/* Chart Section */
 .chart-section {
   margin-bottom: 2rem;
 }
 
-/* Line Chart */
 .line-chart-container {
   background-color: rgb(255 255 255);
   border-radius: 0.75rem;
@@ -760,7 +1003,6 @@
   r: 6;
 }
 
-/* Time Range Buttons */
 .time-range-buttons {
   display: flex;
   justify-content: center;
@@ -807,7 +1049,6 @@
   background-color: rgb(107 114 128);
 }
 
-/* Risk Stats Section */
 .risk-stats-section {
   margin-bottom: 2rem;
 }
@@ -836,7 +1077,6 @@
   }
 }
 
-/* Pie Chart */
 .pie-chart-container {
   background-color: rgb(255 255 255);
   border-radius: 0.75rem;
@@ -928,7 +1168,6 @@
   color: rgb(209 213 219);
 }
 
-/* Top Performers */
 .top-performers-container {
   background-color: rgb(255 255 255);
   border-radius: 0.75rem;
