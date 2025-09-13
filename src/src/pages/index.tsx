@@ -9,6 +9,7 @@ interface User {
 export default function Home() {
   const [user, setUser] = useState<User | null>(null)
   const [loading, setLoading] = useState(true)
+  const [redirecting, setRedirecting] = useState(false)
   const [isLogin, setIsLogin] = useState(true)
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
@@ -18,6 +19,12 @@ export default function Home() {
     // Check if user is already logged in
     const getUser = async () => {
       const { data: { user } } = await supabase.auth.getUser()
+      if (user) {
+        // User is already logged in, redirect immediately
+        setRedirecting(true)
+        window.location.href = '/dashboard'
+        return
+      }
       setUser(user as User | null)
       setLoading(false)
     }
@@ -27,8 +34,14 @@ export default function Home() {
     // Listen for auth changes
     const { data: { subscription } } = supabase.auth.onAuthStateChange(
       (event, session) => {
-        setUser(session?.user as User | null)
-        setLoading(false)
+        if (event === 'SIGNED_IN' && session?.user) {
+          // User just signed in, redirect immediately
+          setRedirecting(true)
+          window.location.href = '/dashboard'
+        } else {
+          setUser(session?.user as User | null)
+          setLoading(false)
+        }
       }
     )
 
@@ -49,6 +62,7 @@ export default function Home() {
         })
         if (error) throw error
         setMessage('Successfully signed in!')
+        // The redirect will happen via the auth state change listener
       } else {
         // Sign up
         const { error } = await supabase.auth.signUp({
@@ -60,7 +74,6 @@ export default function Home() {
       }
     } catch (error: any) {
       setMessage(error.message)
-    } finally {
       setLoading(false)
     }
   }
@@ -74,10 +87,12 @@ export default function Home() {
     }
   }
 
-  if (loading) {
+  if (loading || redirecting) {
     return (
       <div className="aurora-loading">
-        <div className="aurora-loading-text">Loading...</div>
+        <div className="aurora-loading-text">
+          {redirecting ? 'Redirecting...' : 'Loading...'}
+        </div>
       </div>
     )
   }
