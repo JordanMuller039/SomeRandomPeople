@@ -1,6 +1,10 @@
+/* Import Afacad Font */
 @import url('https://fonts.googleapis.com/css2?family=Afacad:wght@400;500;600;700&display=swap');
 
-/* Aurora Sign-in Page Styles */
+/* ========================================
+   AURORA LOGIN PAGE STYLES
+   ======================================== */
+
 .aurora-container {
   font-family: 'Afacad', sans-serif;
   min-height: 100vh;
@@ -11,12 +15,10 @@
   transition: background-color 0.3s ease;
 }
 
-/* Sign In Mode - Orange theme */
 .aurora-container.signin-mode {
   background-color: white;
 }
 
-/* Create Account Mode - Inverted theme */
 .aurora-container.create-account-mode {
   background-color: #ff5630;
 }
@@ -45,7 +47,6 @@
   padding: 2rem;
 }
 
-/* Sign In Mode - Orange title on white background */
 .aurora-container.signin-mode .aurora-title {
   font-size: 1.875rem;
   font-weight: 400;
@@ -54,7 +55,6 @@
   text-transform: lowercase;
 }
 
-/* Create Account Mode - White title on orange background */
 .aurora-container.create-account-mode .aurora-title {
   font-size: 1.875rem;
   font-weight: 400;
@@ -70,7 +70,7 @@
   width: 100%;
 }
 
-/* Sign In Mode - Orange borders on white background */
+/* Sign In Mode Inputs */
 .aurora-container.signin-mode .aurora-input {
   width: 100%;
   padding: 0.75rem 1rem;
@@ -94,7 +94,7 @@
   color: #cccccc;
 }
 
-/* Create Account Mode - White borders on orange background */
+/* Create Account Mode Inputs */
 .aurora-container.create-account-mode .aurora-input {
   width: 100%;
   padding: 0.75rem 1rem;
@@ -118,7 +118,7 @@
   color: rgba(255, 255, 255, 0.7);
 }
 
-/* Sign In Mode - Orange button with white text on hover */
+/* Sign In Mode Buttons */
 .aurora-container.signin-mode .aurora-submit-button {
   width: 100%;
   padding: 0.75rem 1.5rem;
@@ -144,7 +144,7 @@
   cursor: not-allowed;
 }
 
-/* Create Account Mode - White button with orange text on hover */
+/* Create Account Mode Buttons */
 .aurora-container.create-account-mode .aurora-submit-button {
   width: 100%;
   padding: 0.75rem 1.5rem;
@@ -170,7 +170,7 @@
   cursor: not-allowed;
 }
 
-/* Sign In Mode - Gray toggle button */
+/* Toggle Buttons */
 .aurora-container.signin-mode .aurora-toggle-button {
   background: none;
   border: none;
@@ -187,7 +187,6 @@
   text-decoration: underline;
 }
 
-/* Create Account Mode - Light gray toggle button */
 .aurora-container.create-account-mode .aurora-toggle-button {
   background: none;
   border: none;
@@ -205,6 +204,7 @@
   color: white;
 }
 
+/* Messages */
 .aurora-message {
   font-family: 'Afacad', sans-serif;
   font-size: 0.875rem;
@@ -264,332 +264,22 @@
   color: white;
 }
 
-/* Legacy styles for existing components */
-.loading-container {
-  font-family: sans-serif;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  min-height: 100vh;
-}
+/* ========================================
+   DASHBOARD STYLES
+   ======================================== */
 
-.loading-text {
-  font-size: 1.125rem;
-  line-height: 1.75rem;
-}
-
-.main-container {
-  font-family: sans-serif;
-  display: grid;
-  grid-template-rows: 20px 1fr 20px;
-  align-items: center;
-  justify-items: center;
-  min-height: 100vh;
-  padding: 2rem;
-  padding-bottom: 5rem;
-  gap: 4rem;
-}
-
-@media (min-width: 640px) {
-  .main-container {
-    padding: 5rem;
-  }
-}
-
-.main-content {
-  display: flex;
-  flex-direction: column;
-  gap: 32px;
-  grid-row-start: 2;
-  align-items: center;
-}
-
-@media (min-width: 640px) {
-  .main-content {
-    align-items: flex-start;
-  }
-}
-
-.logo {
-  /* Add any additional logo styles here */
-}
-
-@media (prefers-color-scheme: dark) {
-  .logo {
-    filter: invert(1);
-  }
-}
-
-.welcome-section {
-  display: flex;
-  flex-direction: column;
-  gap: 1rem;
-  align-items: center;
-}
-
-.welcome-title {
-  font-size: 1.5rem;
-  line-height: 2rem;
-  font-weight: 700;
-}
-
-.welcome-email {
-  color: rgb(75 85 99);
-}
-
-@media (prefers-color-scheme: dark) {
-  .welcome-email {
-    color: rgb(156 163 175);
-  }
-}
-
-.signout-button {
-  border-radius: 9999px;
-  border: 1px solid transparent;
-  transition-property: color, background-color, border-color, text-decoration-color, fill, stroke;
-  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
-  transition-duration: 150ms;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background-color: rgb(220 38 38);
-  color: rgb(255 255 255);
-  gap: 0.5rem;
-  font-weight: 500;
-  font-size: 0.875rem;
-  line-height: 1.25rem;
-  height: 2.5rem;
-  padding-left: 1rem;
-  padding-right: 1rem;
-}
-
-@media (min-width: 640px) {
-  .signout-button {
-    font-size: 1rem;
-    line-height: 1.5rem;
-    height: 3rem;
-    padding-left: 1.25rem;
-    padding-right: 1.25rem;
-  }
-}
-
-.signout-button:hover {
-  background-color: rgb(185 28 28);
-}
-
-.auth-section {
-  display: flex;
-  flex-direction: column;
-  gap: 1rem;
-  align-items: center;
-  width: 100%;
-  max-width: 28rem;
-}
-
-.auth-title {
-  font-size: 1.5rem;
-  line-height: 2rem;
-  font-weight: 700;
-}
-
-.auth-form {
-  display: flex;
-  flex-direction: column;
-  gap: 1rem;
-  width: 100%;
-}
-
-.auth-input {
-  width: 100%;
-  padding-left: 1rem;
-  padding-right: 1rem;
-  padding-top: 0.5rem;
-  padding-bottom: 0.5rem;
-  border: 1px solid rgb(209 213 219);
-  border-radius: 0.5rem;
-  background-color: rgb(255 255 255);
-  color: rgb(0 0 0);
-}
-
-.auth-input:focus {
-  outline: 2px solid transparent;
-  outline-offset: 2px;
-  --tw-ring-offset-shadow: var(--tw-ring-inset) 0 0 0 var(--tw-ring-offset-width) var(--tw-ring-offset-color);
-  --tw-ring-shadow: var(--tw-ring-inset) 0 0 0 calc(2px + var(--tw-ring-offset-width)) var(--tw-ring-color);
-  box-shadow: var(--tw-ring-offset-shadow), var(--tw-ring-shadow), var(--tw-shadow, 0 0 #0000);
-  --tw-ring-color: rgb(59 130 246);
-}
-
-@media (prefers-color-scheme: dark) {
-  .auth-input {
-    border-color: rgb(75 85 99);
-    background-color: rgb(31 41 55);
-    color: rgb(255 255 255);
-  }
-}
-
-.auth-submit-button {
-  width: 100%;
-  border-radius: 9999px;
-  border: 1px solid transparent;
-  transition-property: color, background-color, border-color, text-decoration-color, fill, stroke;
-  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
-  transition-duration: 150ms;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background-color: rgb(37 99 235);
-  color: rgb(255 255 255);
-  gap: 0.5rem;
-  font-weight: 500;
-  font-size: 0.875rem;
-  line-height: 1.25rem;
-  height: 2.5rem;
-  padding-left: 1rem;
-  padding-right: 1rem;
-}
-
-@media (min-width: 640px) {
-  .auth-submit-button {
-    font-size: 1rem;
-    line-height: 1.5rem;
-    height: 3rem;
-    padding-left: 1.25rem;
-    padding-right: 1.25rem;
-  }
-}
-
-.auth-submit-button:hover {
-  background-color: rgb(29 78 216);
-}
-
-.auth-submit-button:disabled {
-  opacity: 0.5;
-}
-
-.auth-toggle-button {
-  color: rgb(37 99 235);
-  font-size: 0.875rem;
-  line-height: 1.25rem;
-  background: none;
-  border: none;
-  cursor: pointer;
-}
-
-.auth-toggle-button:hover {
-  text-decoration: underline;
-}
-
-@media (prefers-color-scheme: dark) {
-  .auth-toggle-button {
-    color: rgb(96 165 250);
-  }
-}
-
-.auth-message {
-  font-size: 0.875rem;
-  line-height: 1.25rem;
-  text-align: center;
-}
-
-.success-message {
-  color: rgb(22 163 74);
-}
-
-@media (prefers-color-scheme: dark) {
-  .success-message {
-    color: rgb(74 222 128);
-  }
-}
-
-.error-message {
-  color: rgb(220 38 38);
-}
-
-@media (prefers-color-scheme: dark) {
-  .error-message {
-    color: rgb(248 113 113);
-  }
-}
-
-.instructions-list {
-  font-family: ui-monospace, SFMono-Regular, "SF Mono", Consolas, "Liberation Mono", Menlo, monospace;
-  list-style-position: inside;
-  list-style-type: decimal;
-  font-size: 0.875rem;
-  line-height: 1.5;
-  text-align: center;
-}
-
-@media (min-width: 640px) {
-  .instructions-list {
-    text-align: left;
-  }
-}
-
-.instruction-item {
-  margin-bottom: 0.5rem;
-  letter-spacing: -0.01em;
-}
-
-.instruction-item-last {
-  letter-spacing: -0.01em;
-}
-
-.code-highlight {
-  background-color: rgba(0, 0, 0, 0.05);
-  font-family: ui-monospace, SFMono-Regular, "SF Mono", Consolas, "Liberation Mono", Menlo, monospace;
-  font-weight: 600;
-  padding-left: 0.25rem;
-  padding-right: 0.25rem;
-  padding-top: 0.125rem;
-  padding-bottom: 0.125rem;
-  border-radius: 0.25rem;
-}
-
-@media (prefers-color-scheme: dark) {
-  .code-highlight {
-    background-color: rgba(255, 255, 255, 0.06);
-  }
-}
-
-.footer {
-  grid-row-start: 3;
-  display: flex;
-  gap: 24px;
-  flex-wrap: wrap;
-  align-items: center;
-  justify-content: center;
-}
-
-.footer-link {
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-  transition-property: color, background-color, border-color, text-decoration-color, fill, stroke;
-  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
-  transition-duration: 150ms;
-  text-decoration: none;
-}
-
-.footer-link:hover {
-  text-decoration: underline;
-  text-underline-offset: 4px;
-}
-
-/* Dashboard styles remain the same */
+/* Dashboard Container */
 .dashboard-container {
   min-height: 100vh;
   background-color: rgb(249 250 251);
-  transition-property: color, background-color, border-color, text-decoration-color, fill, stroke;
-  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
-  transition-duration: 300ms;
+  transition: all 0.3s ease;
 }
 
 .dashboard-container.dark {
   background-color: rgb(17 24 39);
 }
 
+/* Dashboard Loading */
 .dashboard-loading {
   display: flex;
   align-items: center;
@@ -607,10 +297,8 @@
   border-radius: 9999px;
   height: 3rem;
   width: 3rem;
-  border-width: 2px;
-  border-style: solid;
-  border-color: transparent;
-  border-bottom-color: rgb(37 99 235);
+  border: 2px solid transparent;
+  border-bottom-color: #FF5630;
 }
 
 @keyframes spin {
@@ -619,6 +307,7 @@
   }
 }
 
+/* Sidebar */
 .sidebar {
   position: fixed;
   top: 0;
@@ -627,9 +316,7 @@
   z-index: 50;
   background-color: rgb(255 255 255);
   box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
-  transition-property: all;
-  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
-  transition-duration: 300ms;
+  transition: all 0.3s ease;
 }
 
 .dashboard-container.dark .sidebar {
@@ -663,22 +350,21 @@
 }
 
 .sidebar-logo {
-  font-size: 1.25rem;
-  line-height: 1.75rem;
+  font-family: 'Afacad', sans-serif;
+  font-size: 1.5rem;
+  line-height: 2rem;
   font-weight: 600;
-  color: rgb(37 99 235);
+  color: #FF5630;
 }
 
 .sidebar-collapse-button {
   padding: 0.5rem;
   border-radius: 0.5rem;
-  transition-property: color, background-color, border-color, text-decoration-color, fill, stroke;
-  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
-  transition-duration: 150ms;
   background: none;
   border: none;
   cursor: pointer;
   color: rgb(75 85 99);
+  transition: background-color 0.15s ease;
 }
 
 .sidebar-collapse-button:hover {
@@ -720,18 +406,17 @@
 }
 
 .sidebar-profile-info {
-  flex: 1 1 0%;
+  flex: 1;
   min-width: 0;
 }
 
 .sidebar-profile-name {
   font-size: 0.875rem;
-  line-height: 1.25rem;
   font-weight: 500;
   color: rgb(17 24 39);
+  overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
-  overflow: hidden;
 }
 
 .dashboard-container.dark .sidebar-profile-name {
@@ -740,19 +425,19 @@
 
 .sidebar-profile-email {
   font-size: 0.75rem;
-  line-height: 1rem;
   color: rgb(107 114 128);
+  overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
-  overflow: hidden;
 }
 
 .dashboard-container.dark .sidebar-profile-email {
   color: rgb(156 163 175);
 }
 
+/* Sidebar Navigation */
 .sidebar-nav {
-  flex: 1 1 0%;
+  flex: 1;
   padding: 1rem;
 }
 
@@ -769,19 +454,14 @@
   display: flex;
   align-items: center;
   gap: 0.75rem;
-  padding-left: 0.75rem;
-  padding-right: 0.75rem;
-  padding-top: 0.5rem;
-  padding-bottom: 0.5rem;
+  padding: 0.5rem 0.75rem;
   border-radius: 0.5rem;
-  transition-property: color, background-color, border-color, text-decoration-color, fill, stroke;
-  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
-  transition-duration: 150ms;
   text-decoration: none;
+  transition: all 0.15s ease;
 }
 
 .sidebar-nav-link-active {
-  background-color: rgb(37 99 235);
+  background-color: #FF5630;
   color: rgb(255 255 255);
   box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
 }
@@ -809,10 +489,10 @@
 
 .sidebar-nav-text {
   font-size: 0.875rem;
-  line-height: 1.25rem;
   font-weight: 500;
 }
 
+/* Sidebar Actions */
 .sidebar-actions {
   padding: 1rem;
   border-top: 1px solid rgb(229 231 235);
@@ -830,18 +510,13 @@
   align-items: center;
   gap: 0.75rem;
   width: 100%;
-  padding-left: 0.75rem;
-  padding-right: 0.75rem;
-  padding-top: 0.5rem;
-  padding-bottom: 0.5rem;
+  padding: 0.5rem 0.75rem;
   border-radius: 0.5rem;
   color: rgb(75 85 99);
-  transition-property: color, background-color, border-color, text-decoration-color, fill, stroke;
-  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
-  transition-duration: 150ms;
   background: none;
   border: none;
   cursor: pointer;
+  transition: background-color 0.15s ease;
 }
 
 .sidebar-action-button:hover {
@@ -861,18 +536,13 @@
   align-items: center;
   gap: 0.75rem;
   width: 100%;
-  padding-left: 0.75rem;
-  padding-right: 0.75rem;
-  padding-top: 0.5rem;
-  padding-bottom: 0.5rem;
+  padding: 0.5rem 0.75rem;
   border-radius: 0.5rem;
   color: rgb(220 38 38);
-  transition-property: color, background-color, border-color, text-decoration-color, fill, stroke;
-  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
-  transition-duration: 150ms;
   background: none;
   border: none;
   cursor: pointer;
+  transition: background-color 0.15s ease;
 }
 
 .sidebar-signout-button:hover {
@@ -890,14 +560,12 @@
 
 .sidebar-action-text {
   font-size: 0.875rem;
-  line-height: 1.25rem;
   font-weight: 500;
 }
 
+/* Main Content */
 .main-content {
-  transition-property: all;
-  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
-  transition-duration: 300ms;
+  transition: margin-left 0.3s ease;
 }
 
 .main-content-normal {
@@ -918,7 +586,6 @@
 
 .welcome-title {
   font-size: 1.875rem;
-  line-height: 2.25rem;
   font-weight: 300;
   color: rgb(17 24 39);
   margin-bottom: 0.5rem;
@@ -940,15 +607,14 @@
   margin-bottom: 2rem;
 }
 
+/* Line Chart */
 .line-chart-container {
   background-color: rgb(255 255 255);
   border-radius: 0.75rem;
   padding: 1.5rem;
   box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
   border: 1px solid rgb(243 244 246);
-  transition-property: all;
-  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
-  transition-duration: 300ms;
+  transition: all 0.3s ease;
 }
 
 .dashboard-container.dark .line-chart-container {
@@ -958,7 +624,6 @@
 
 .line-chart-title {
   font-size: 1.25rem;
-  line-height: 1.75rem;
   font-weight: 600;
   color: rgb(31 41 55);
   margin-bottom: 1.5rem;
@@ -1003,6 +668,7 @@
   r: 6;
 }
 
+/* Time Range Buttons */
 .time-range-buttons {
   display: flex;
   justify-content: center;
@@ -1010,23 +676,17 @@
 }
 
 .time-range-button {
-  padding-left: 1rem;
-  padding-right: 1rem;
-  padding-top: 0.5rem;
-  padding-bottom: 0.5rem;
+  padding: 0.5rem 1rem;
   border-radius: 0.5rem;
   font-size: 0.875rem;
-  line-height: 1.25rem;
   font-weight: 500;
-  transition-property: all;
-  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
-  transition-duration: 200ms;
   border: none;
   cursor: pointer;
+  transition: all 0.2s ease;
 }
 
 .time-range-button-active {
-  background-color: rgb(37 99 235);
+  background-color: #FF5630;
   color: rgb(255 255 255);
   box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
 }
@@ -1049,13 +709,13 @@
   background-color: rgb(107 114 128);
 }
 
+/* Risk Stats Section */
 .risk-stats-section {
   margin-bottom: 2rem;
 }
 
 .risk-stats-title {
   font-size: 1.5rem;
-  line-height: 2rem;
   font-weight: 300;
   color: rgb(17 24 39);
   margin-bottom: 1.5rem;
@@ -1077,15 +737,14 @@
   }
 }
 
+/* Pie Chart */
 .pie-chart-container {
   background-color: rgb(255 255 255);
   border-radius: 0.75rem;
   padding: 1.5rem;
   box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
   border: 1px solid rgb(243 244 246);
-  transition-property: all;
-  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
-  transition-duration: 300ms;
+  transition: all 0.3s ease;
 }
 
 .pie-chart-container:hover {
@@ -1099,7 +758,6 @@
 
 .pie-chart-title {
   font-size: 1.125rem;
-  line-height: 1.75rem;
   font-weight: 600;
   color: rgb(31 41 55);
   margin-bottom: 1rem;
@@ -1160,7 +818,6 @@
 
 .pie-chart-legend-text {
   font-size: 0.875rem;
-  line-height: 1.25rem;
   color: rgb(75 85 99);
 }
 
@@ -1168,15 +825,14 @@
   color: rgb(209 213 219);
 }
 
+/* Top Performers */
 .top-performers-container {
   background-color: rgb(255 255 255);
   border-radius: 0.75rem;
   padding: 1.5rem;
   box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
   border: 1px solid rgb(243 244 246);
-  transition-property: all;
-  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
-  transition-duration: 300ms;
+  transition: all 0.3s ease;
 }
 
 .top-performers-container:hover {
@@ -1190,7 +846,6 @@
 
 .top-performers-title {
   font-size: 1.125rem;
-  line-height: 1.75rem;
   font-weight: 600;
   color: rgb(31 41 55);
   margin-bottom: 1rem;
@@ -1226,7 +881,6 @@
 
 .top-performer-name {
   font-size: 0.875rem;
-  line-height: 1.25rem;
   font-weight: 500;
   color: rgb(17 24 39);
 }
@@ -1237,7 +891,6 @@
 
 .top-performer-return {
   font-size: 0.875rem;
-  line-height: 1.25rem;
   font-weight: 600;
   color: rgb(22 163 74);
 }

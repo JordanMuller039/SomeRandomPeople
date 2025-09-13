@@ -177,8 +177,8 @@ export default function Dashboard() {
           <svg className="line-chart-svg" viewBox="0 0 400 200">
             <defs>
               <linearGradient id="gradient" x1="0%" y1="0%" x2="0%" y2="100%">
-                <stop offset="0%" stopColor="#0000CD" stopOpacity="0.3" />
-                <stop offset="100%" stopColor="#0000CD" stopOpacity="0.1" />
+                <stop offset="0%" stopColor="#FF5630" stopOpacity="0.3" />
+                <stop offset="100%" stopColor="#FF5630" stopOpacity="0.1" />
               </linearGradient>
             </defs>
             
@@ -202,7 +202,7 @@ export default function Dashboard() {
                 `${(i / (mockIndexData.length - 1)) * 400},${200 - ((d.value - minValue) / range) * 180}`
               ).join(' L ')}`}
               fill="none"
-              stroke="#0000CD"
+              stroke="#FF5630"
               strokeWidth="3"
               className="line-chart-line"
             />
@@ -223,7 +223,7 @@ export default function Dashboard() {
                 cx={(i / (mockIndexData.length - 1)) * 400}
                 cy={200 - ((d.value - minValue) / range) * 180}
                 r="4"
-                fill="#0000CD"
+                fill="#FF5630"
                 className="line-chart-point"
               />
             ))}
