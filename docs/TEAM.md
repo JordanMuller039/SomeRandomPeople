@@ -16,6 +16,10 @@ SomeRandomPeople
 | **Jordan Muller**   | Backend Developer   | IIE Varsity College | jordanmul | jordan.muller039@gmail.com |
 | **Keagan Culligan**   | Frontend Developer  | University of Cape Town | keaganculligan8594 | keagan.chalmers@gmail.com |
 
+## Discord IDs
+**Jordan Muller** 358287916234965012
+**Keagan Culligan** 945560280857972746
+
 ## 🏫 Institution
 ``` c
 // TODO: Fill-in the name of the institution your
@@ -29,4 +33,3 @@ University of Cape Town
 Jordan Muller LinkedIn: https://www.linkedin.com/in/jordan-muller-410177292/
 Keagan Culligan LinkedIn: https://www.linkedin.com/in/keaganculligandatascientist/
 
-# I love to goon
