@@ -9,7 +9,13 @@ import {
   MoonIcon,
   ArrowRightOnRectangleIcon,
   Bars3Icon,
-  XMarkIcon
+  XMarkIcon,
+  PlusIcon,
+  UserGroupIcon,
+  BriefcaseIcon,
+  MapPinIcon,
+  CalendarIcon,
+  StarIcon
 } from '@heroicons/react/24/outline'
 
 interface User {
@@ -23,40 +29,40 @@ interface NavItem {
   active?: boolean
 }
 
-// Mock data for the charts
-const mockIndexData = [
-  { date: '2024-01', value: 100 },
-  { date: '2024-02', value: 105 },
-  { date: '2024-03', value: 98 },
-  { date: '2024-04', value: 112 },
-  { date: '2024-05', value: 108 },
-  { date: '2024-06', value: 125 },
-  { date: '2024-07', value: 130 },
-  { date: '2024-08', value: 118 },
-  { date: '2024-09', value: 140 },
+// Mock data for the Aurora dashboard
+const pointsData = [
+  { month: 'Jan', value: 120 },
+  { month: 'Feb', value: 135 },
+  { month: 'Mar', value: 98 },
+  { month: 'Apr', value: 145 },
+  { month: 'May', value: 160 },
+  { month: 'Jun', value: 140 },
+  { month: 'Jul', value: 175 },
+  { month: 'Aug', value: 190 },
+  { month: 'Sep', value: 165 },
+  { month: 'Oct', value: 200 },
+  { month: 'Nov', value: 185 },
+  { month: 'Dec', value: 220 },
 ]
 
-const timeRanges = ['1M', '1Yr', 'YTD', '3Yr', 'All Time']
-
-const marketCapData = [
-  { name: 'Large Cap', value: 65, color: '#0000CD' },
-  { name: 'Mid Cap', value: 25, color: '#4169E1' },
-  { name: 'Small Cap', value: 10, color: '#87CEEB' },
+const progressData = [
+  { name: 'Trading Skills', value: 90, color: '#22C55E' },
+  { name: 'Market Analysis', value: 25, color: '#EF4444' },
+  { name: 'Risk Management', value: 55, color: '#F97316' },
+  { name: 'Portfolio Management', value: 75, color: '#EAB308' },
 ]
 
-const sectorData = [
-  { name: 'Technology', value: 28, color: '#0000CD' },
-  { name: 'Healthcare', value: 22, color: '#4169E1' },
-  { name: 'Financial', value: 18, color: '#6495ED' },
-  { name: 'Energy', value: 15, color: '#87CEEB' },
-  { name: 'Others', value: 17, color: '#B0C4DE' },
-]
-
-const topPerformers = [
-  { name: 'TechCorp', return: 28.5, color: '#0000CD' },
-  { name: 'MedLife', return: 22.3, color: '#4169E1' },
-  { name: 'GreenEnergy', return: 19.8, color: '#6495ED' },
-]
+// User profile data
+const userProfile = {
+  name: 'Investment Analyst',
+  bio: 'I am really passionate about the South Africa Stock Market.',
+  job: 'Investment Analyst',
+  location: 'Cape Town, SA',
+  since: 'Since Jan 2014',
+  level: 'Grandmaster',
+  linkedin: 'Linkedin Account',
+  github: 'Github Account'
+}
 
 export default function Dashboard() {
   const [user, setUser] = useState<User | null>(null)
@@ -66,10 +72,9 @@ export default function Dashboard() {
   const [selectedTimeRange, setSelectedTimeRange] = useState('1Yr')
 
   const navItems: NavItem[] = [
-    { name: 'Home', icon: HomeIcon, active: true },
-    { name: 'Daily Challenges', icon: ChartBarIcon },
-    { name: 'Experience', icon: ChartBarIcon },
+    { name: 'Daily Challenges', icon: PlusIcon, active: true },
     { name: 'Learn', icon: AcademicCapIcon },
+    { name: 'Friends', icon: UserGroupIcon },
   ]
 
   useEffect(() => {
@@ -110,76 +115,64 @@ export default function Dashboard() {
     document.documentElement.classList.toggle('dark')
   }
 
-  const PieChart = ({ data, title }: { data: any[], title: string }) => {
-    const total = data.reduce((sum, item) => sum + item.value, 0)
-    let cumulativePercentage = 0
-    
+  const DonutChart = ({ data }: { data: any[] }) => {
     return (
-      <div className="pie-chart-container">
-        <h3 className="pie-chart-title">{title}</h3>
-        <div className="pie-chart-content">
-          <div className="pie-chart-svg-container">
-            <svg className="pie-chart-svg" viewBox="0 0 36 36">
-              <path
-                d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831"
-                fill="none"
-                stroke="#f3f4f6"
-                strokeWidth="2"
-                className="pie-chart-background"
-              />
-              {data.map((item, index) => {
-                const percentage = (item.value / total) * 100
-                const strokeDasharray = `${percentage} ${100 - percentage}`
-                const strokeDashoffset = -cumulativePercentage
-                cumulativePercentage += percentage
-                
-                return (
+      <div className="donut-charts-container">
+        {data.map((item, index) => {
+          const percentage = item.value
+          const circumference = 2 * Math.PI * 15.9155 // radius = 15.9155
+          const strokeDasharray = `${(percentage / 100) * circumference} ${circumference}`
+          
+          return (
+            <div key={index} className="donut-chart-item">
+              <div className="donut-chart-svg-container">
+                <svg className="donut-chart-svg" viewBox="0 0 36 36">
                   <path
-                    key={index}
+                    d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831"
+                    fill="none"
+                    stroke="#f3f4f6"
+                    strokeWidth="2"
+                    className="donut-chart-background"
+                  />
+                  <path
                     d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831"
                     fill="none"
                     stroke={item.color}
                     strokeWidth="2"
                     strokeDasharray={strokeDasharray}
-                    strokeDashoffset={strokeDashoffset}
-                    className="pie-chart-segment"
+                    strokeDashoffset="0"
+                    className="donut-chart-segment"
+                    transform="rotate(-90 18 18)"
                   />
-                )
-              })}
-            </svg>
-          </div>
-          <div className="pie-chart-legend">
-            {data.map((item, index) => (
-              <div key={index} className="pie-chart-legend-item">
-                <div 
-                  className="pie-chart-legend-color" 
-                  style={{ backgroundColor: item.color }}
-                />
-                <span className="pie-chart-legend-text">
-                  {item.name}: {item.value}%
-                </span>
+                </svg>
+                <div className="donut-chart-percentage">
+                  {percentage}%
+                </div>
               </div>
-            ))}
-          </div>
-        </div>
+              <div className="donut-chart-label">
+                {item.name}
+              </div>
+            </div>
+          )
+        })}
       </div>
     )
   }
 
-  const LineChart = () => {
-    const maxValue = Math.max(...mockIndexData.map(d => d.value))
-    const minValue = Math.min(...mockIndexData.map(d => d.value))
+  const PointsChart = () => {
+    const maxValue = Math.max(...pointsData.map(d => d.value))
+    const minValue = Math.min(...pointsData.map(d => d.value))
     const range = maxValue - minValue
     
     return (
-      <div className="line-chart-container">
-        <h2 className="line-chart-title">JSE Accumulative Returns</h2>
-        <div className="line-chart-svg-container">
-          <svg className="line-chart-svg" viewBox="0 0 400 200">
+      <div className="points-chart-container">
+        <h2 className="points-chart-title">Your Points This Year!</h2>
+        <div className="points-chart-svg-container">
+          <svg className="points-chart-svg" viewBox="0 0 400 200">
             <defs>
-              <linearGradient id="gradient" x1="0%" y1="0%" x2="0%" y2="100%">
-                <stop offset="0%" stopColor="#FF5630" stopOpacity="0.3" />
-                <stop offset="100%" stopColor="#FF5630" stopOpacity="0.1" />
+              <linearGradient id="pointsGradient" x1="0%" y1="0%" x2="0%" y2="100%">
+                <stop offset="0%" stopColor="#EF4444" stopOpacity="0.3" />
+                <stop offset="100%" stopColor="#EF4444" stopOpacity="0.1" />
               </linearGradient>
             </defs>
             
@@ -193,59 +186,53 @@ export default function Dashboard() {
                 y2={i * 40}
                 stroke="#f3f4f6"
                 strokeWidth="1"
-                className="line-chart-grid"
+                className="points-chart-grid"
               />
             ))}
             
+            {/* Baseline */}
+            <line
+              x1="0"
+              y1="180"
+              x2="400"
+              y2="180"
+              stroke="#000000"
+              strokeWidth="2"
+              className="points-chart-baseline"
+            />
+            
             {/* Line path */}
             <path
-              d={`M ${mockIndexData.map((d, i) => 
-                `${(i / (mockIndexData.length - 1)) * 400},${200 - ((d.value - minValue) / range) * 180}`
+              d={`M ${pointsData.map((d, i) => 
+                `${(i / (pointsData.length - 1)) * 400},${200 - ((d.value - minValue) / range) * 180}`
               ).join(' L ')}`}
               fill="none"
-              stroke="#FF5630"
+              stroke="#EF4444"
               strokeWidth="3"
-              className="line-chart-line"
+              className="points-chart-line"
             />
             
             {/* Fill area */}
             <path
-              d={`M ${mockIndexData.map((d, i) => 
-                `${(i / (mockIndexData.length - 1)) * 400},${200 - ((d.value - minValue) / range) * 180}`
+              d={`M ${pointsData.map((d, i) => 
+                `${(i / (pointsData.length - 1)) * 400},${200 - ((d.value - minValue) / range) * 180}`
               ).join(' L ')} L 400,200 L 0,200 Z`}
-              fill="url(#gradient)"
-              className="line-chart-area"
+              fill="url(#pointsGradient)"
+              className="points-chart-area"
             />
             
             {/* Data points */}
-            {mockIndexData.map((d, i) => (
+            {pointsData.map((d, i) => (
               <circle
                 key={i}
-                cx={(i / (mockIndexData.length - 1)) * 400}
+                cx={(i / (pointsData.length - 1)) * 400}
                 cy={200 - ((d.value - minValue) / range) * 180}
                 r="4"
-                fill="#FF5630"
-                className="line-chart-point"
+                fill="#EF4444"
+                className="points-chart-point"
               />
             ))}
           </svg>
-        </div>
-        
-        {/* Time range buttons */}
-        <div className="time-range-buttons">
-          {timeRanges.map((range) => (
-            <button
-              key={range}
-              onClick={() => setSelectedTimeRange(range)}
-              className={`time-range-button ${
-                selectedTimeRange === range
-                  ? 'time-range-button-active'
-                  : 'time-range-button-inactive'
-              }`}
-            >
-              {range}
-            </button>
-          ))}
         </div>
       </div>
     )
@@ -260,136 +247,115 @@ export default function Dashboard() {
   }
 
   return (
-    <div className={`dashboard-container ${darkMode ? 'dark' : ''}`}>
+    <div className={`aurora-dashboard ${darkMode ? 'dark' : ''}`}>
       {/* Sidebar */}
-      <div className={`sidebar ${sidebarCollapsed ? 'sidebar-collapsed' : 'sidebar-expanded'}`}>
-        <div className="sidebar-inner">
-          {/* Header with logo and collapse button */}
-          <div className="sidebar-header">
-            {!sidebarCollapsed && (
-              <h1 className="sidebar-logo">Aurora</h1>
-            )}
-            <button
-              onClick={() => setSidebarCollapsed(!sidebarCollapsed)}
-              className="sidebar-collapse-button"
-            >
-              {sidebarCollapsed ? <Bars3Icon className="sidebar-icon" /> : <XMarkIcon className="sidebar-icon" />}
-            </button>
+      <div className="aurora-sidebar">
+        <div className="aurora-sidebar-inner">
+          {/* Logo */}
+          <div className="aurora-logo">
+            <h1>aurora</h1>
           </div>
 
-          {/* User Profile */}
-          <div className="sidebar-profile">
-            <div className="sidebar-profile-content">
-              <UserCircleIcon className="sidebar-profile-avatar" />
-              {!sidebarCollapsed && (
-                <div className="sidebar-profile-info">
-                  <p className="sidebar-profile-name">
-                    Welcome back!
-                  </p>
-                  <p className="sidebar-profile-email">
-                    {user?.email}
-                  </p>
-                </div>
-              )}
-            </div>
+          {/* User Avatar */}
+          <div className="aurora-user-avatar">
+            <UserCircleIcon className="aurora-avatar-icon" />
           </div>
 
           {/* Navigation */}
-          <nav className="sidebar-nav">
-            <ul className="sidebar-nav-list">
+          <nav className="aurora-nav">
+            <ul className="aurora-nav-list">
               {navItems.map((item) => (
                 <li key={item.name}>
                   <a
                     href={
-                      item.name === 'Home' ? '/dashboard' :
                       item.name === 'Daily Challenges' ? '/daily_challenges' :
                       item.name === 'Learn' ? '/learn' :
                       '#'
                     }
-                    className={`sidebar-nav-link ${
+                    className={`aurora-nav-link ${
                       item.active
-                        ? 'sidebar-nav-link-active'
-                        : 'sidebar-nav-link-inactive'
+                        ? 'aurora-nav-link-active'
+                        : 'aurora-nav-link-inactive'
                     }`}
                   >
-                    <item.icon className="sidebar-nav-icon" />
-                    {!sidebarCollapsed && <span className="sidebar-nav-text">{item.name}</span>}
+                    <item.icon className="aurora-nav-icon" />
+                    <span className="aurora-nav-text">{item.name}</span>
                   </a>
                 </li>
               ))}
             </ul>
           </nav>
 
-          {/* Bottom actions */}
-          <div className="sidebar-actions">
-            <button
-              onClick={toggleDarkMode}
-              className="sidebar-action-button"
-            >
-              {darkMode ? <SunIcon className="sidebar-action-icon" /> : <MoonIcon className="sidebar-action-icon" />}
-              {!sidebarCollapsed && (
-                <span className="sidebar-action-text">
-                  {darkMode ? 'Light Mode' : 'Dark Mode'}
-                </span>
-              )}
-            </button>
+          {/* Sign Out Button */}
+          <div className="aurora-signout-section">
             <button
               onClick={handleSignOut}
-              className="sidebar-signout-button"
+              className="aurora-signout-button"
             >
-              <ArrowRightOnRectangleIcon className="sidebar-action-icon" />
-              {!sidebarCollapsed && <span className="sidebar-action-text">Sign Out</span>}
+              <ArrowRightOnRectangleIcon className="aurora-signout-icon" />
+              <span className="aurora-signout-text">Sign Out</span>
             </button>
           </div>
         </div>
       </div>
 
       {/* Main Content */}
-      <div className={`main-content ${sidebarCollapsed ? 'main-content-expanded' : 'main-content-normal'}`}>
-        <div className="main-content-inner">
-          {/* Welcome Section */}
-          <div className="welcome-section">
-            <h1 className="welcome-title">
-              Good morning, {user?.email?.split('@')[0]}
-            </h1>
-            <p className="welcome-subtitle">
-              Here's your portfolio overview for today
-            </p>
-          </div>
-
-          {/* Line Chart */}
-          <div className="chart-section">
-            <LineChart />
-          </div>
-
-          {/* Risk Stats Section */}
-          <div className="risk-stats-section">
-            <h2 className="risk-stats-title">Risk Stats</h2>
-            <div className="risk-stats-grid">
-              <PieChart data={marketCapData} title="Market Cap Weighting" />
-              <PieChart data={sectorData} title="Sector Breakdown" />
-              <div className="top-performers-container">
-                <h3 className="top-performers-title">Top Performers</h3>
-                <div className="top-performers-list">
-                  {topPerformers.map((performer, index) => (
-                    <div key={index} className="top-performer-item">
-                      <div className="top-performer-info">
-                        <div 
-                          className="top-performer-color" 
-                          style={{ backgroundColor: performer.color }}
-                        />
-                        <span className="top-performer-name">
-                          {performer.name}
-                        </span>
-                      </div>
-                      <span className="top-performer-return">
-                        +{performer.return}%
-                      </span>
-                    </div>
-                  ))}
+      <div className="aurora-main-content">
+        <div className="aurora-content-inner">
+          {/* User Profile Card */}
+          <div className="aurora-profile-card">
+            <div className="aurora-profile-left">
+              <div className="aurora-profile-avatar-large">
+                <UserCircleIcon className="aurora-avatar-large-icon" />
+              </div>
+              <div className="aurora-level-badge">
+                <StarIcon className="aurora-star-icon" />
+                <span>{userProfile.level}</span>
+              </div>
+            </div>
+            
+            <div className="aurora-profile-center">
+              <h3 className="aurora-bio-title">Bio:</h3>
+              <p className="aurora-bio-text">{userProfile.bio}</p>
+              <div className="aurora-profile-details">
+                <div className="aurora-detail-item">
+                  <BriefcaseIcon className="aurora-detail-icon" />
+                  <span>{userProfile.job}</span>
+                </div>
+                <div className="aurora-detail-item">
+                  <MapPinIcon className="aurora-detail-icon" />
+                  <span>{userProfile.location}</span>
+                </div>
+                <div className="aurora-detail-item">
+                  <CalendarIcon className="aurora-detail-icon" />
+                  <span>{userProfile.since}</span>
                 </div>
               </div>
             </div>
+            
+            <div className="aurora-profile-right">
+              <h3 className="aurora-follow-title">Follow Me!</h3>
+              <div className="aurora-social-links">
+                <div className="aurora-social-item">
+                  <span className="aurora-linkedin-icon">in</span>
+                  <span>{userProfile.linkedin}</span>
+                </div>
+                <div className="aurora-social-item">
+                  <span className="aurora-github-icon">GitHub</span>
+                  <span>{userProfile.github}</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* Points Chart */}
+          <div className="aurora-points-section">
+            <PointsChart />
+          </div>
+
+          {/* Progress Donut Charts */}
+          <div className="aurora-progress-section">
+            <DonutChart data={progressData} />
           </div>
         </div>
       </div>

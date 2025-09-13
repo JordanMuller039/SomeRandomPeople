@@ -9,7 +9,9 @@ import {
   MoonIcon,
   ArrowRightOnRectangleIcon,
   Bars3Icon,
-  XMarkIcon
+  XMarkIcon,
+  PlusIcon,
+  UserGroupIcon
 } from '@heroicons/react/24/outline'
 
 interface User {
@@ -36,8 +38,9 @@ export default function DailyChallenges() {
 
   const navItems: NavItem[] = [
     { name: 'Home', icon: HomeIcon },
-    { name: 'Experience', icon: ChartBarIcon, active: true },
+    { name: 'Daily Challenges', icon: PlusIcon, active: true },
     { name: 'Learn', icon: AcademicCapIcon },
+    { name: 'Friends', icon: UserGroupIcon },
   ]
 
   useEffect(() => {
@@ -145,74 +148,67 @@ const generateConfetti = () => {
 }
 
 return (
-  <div className={`dashboard-container ${darkMode ? 'dark' : ''}`}>
+  <div className={`aurora-dashboard ${darkMode ? 'dark' : ''}`}>
     {showConfetti && (
       <div className="confetti-container">
         {generateConfetti()}
       </div>
     )}
 
-    <div className={`sidebar ${sidebarCollapsed ? 'sidebar-collapsed' : 'sidebar-expanded'}`}>
-      <div className="sidebar-inner">
-        <div className="sidebar-header">
-          {!sidebarCollapsed && (
-            <h1 className="sidebar-logo">Aurora</h1>
-          )}
+    {/* Aurora Sidebar */}
+    <div className="aurora-sidebar">
+      <div className="aurora-sidebar-inner">
+        {/* Logo */}
+        <div className="aurora-logo">
+          <h1>aurora</h1>
+        </div>
+
+        {/* User Avatar */}
+        <div className="aurora-user-avatar">
+          <UserCircleIcon className="aurora-avatar-icon" />
+        </div>
+
+        {/* Navigation */}
+        <nav className="aurora-nav">
+          <ul className="aurora-nav-list">
+            {navItems.map((item) => (
+              <li key={item.name}>
+                <a
+                  href={
+                    item.name === 'Home' ? '/dashboard' :
+                    item.name === 'Daily Challenges' ? '/daily_challenges' :
+                    item.name === 'Learn' ? '/learn' :
+                    '#'
+                  }
+                  className={`aurora-nav-link ${
+                    item.active
+                      ? 'aurora-nav-link-active'
+                      : 'aurora-nav-link-inactive'
+                  }`}
+                >
+                  <item.icon className="aurora-nav-icon" />
+                  <span className="aurora-nav-text">{item.name}</span>
+                </a>
+              </li>
+            ))}
+          </ul>
+        </nav>
+
+        {/* Sign Out Button */}
+        <div className="aurora-signout-section">
           <button
-            onClick={() => setSidebarCollapsed(!sidebarCollapsed)}
-            className="sidebar-collapse-button"
+            onClick={handleSignOut}
+            className="aurora-signout-button"
           >
-            {sidebarCollapsed ? <Bars3Icon className="sidebar-icon" /> : <XMarkIcon className="sidebar-icon" />}
-          </button>
-        </div>
-
-        <div className="sidebar-profile">
-          <div className="sidebar-profile-content">
-            <UserCircleIcon className="sidebar-profile-avatar" />
-            {!sidebarCollapsed && (
-              <div className="sidebar-profile-info">
-                <p className="sidebar-profile-name">Welcome back!</p>
-                <p className="sidebar-profile-email">{user?.email}</p>
-              </div>
-            )}
-          </div>
-        </div>
-
-        <div className="sidebar-nav">
-          <div className="sidebar-nav-list">
-            <div>
-              <HomeIcon className="sidebar-nav-icon" />
-              {!sidebarCollapsed && <span>Home</span>}
-            </div>
-            <div>
-              <ChartBarIcon className="sidebar-nav-icon" />
-              {!sidebarCollapsed && <span>Experience</span>}
-            </div>
-            <div>
-              <AcademicCapIcon className="sidebar-nav-icon" />
-              {!sidebarCollapsed && <span>Learn</span>}
-            </div>
-          </div>
-        </div>
-
-        <div className="sidebar-actions">
-          <button onClick={toggleDarkMode} className="sidebar-action-button">
-            {darkMode ? <SunIcon className="sidebar-action-icon" /> : <MoonIcon className="sidebar-action-icon" />}
-            {!sidebarCollapsed && (
-              <span className="sidebar-action-text">
-                {darkMode ? 'Light Mode' : 'Dark Mode'}
-              </span>
-            )}
-          </button>
-          <button onClick={handleSignOut} className="sidebar-signout-button">
-            <ArrowRightOnRectangleIcon className="sidebar-action-icon" />
-            {!sidebarCollapsed && <span className="sidebar-action-text">Sign Out</span>}
+            <ArrowRightOnRectangleIcon className="aurora-signout-icon" />
+            <span className="aurora-signout-text">Sign Out</span>
           </button>
         </div>
       </div>
     </div>
-    
-    <div className={`main-content ${sidebarCollapsed ? 'main-content-expanded' : 'main-content-normal'}`}>
+
+    {/* Main Content */}
+    <div className="aurora-main-content">
       <div className="challenges-container">
         <div className="progress-section">
           <div className="level-info">
