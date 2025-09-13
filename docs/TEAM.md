@@ -6,23 +6,25 @@
 
 ## ⚒️ Team Name
 ``` c
-// TODO: Fill-in the name of your team.
+// Team Name
+SomeRandomPeople
 ```
 
 ## 👥 Members
 | Name     | Role                | Institution           | Discord Handle | Email |
 |----------|---------------------|-----------------------| -------------------|-------------|
-| **Name 1**   | Backend Developer   | University of Cape Town | name1 | <email1@gmail.com> |
-| **Name 2**   | Frontend Developer  | University of the Witwatersrand | name2 | <email2@gmail.com> |
-| **Name 3**   | Designer            | University of Johannesburg | name3 | <email3@gmail.com> |
-| **Name 4**   | Q.A Tester          | University of the Western Cape | name4 | <email4@gmail.com> |
+| **Jordan Muller**   | Backend Developer   | IIE Varsity College | jordanmul | jordan.muller039@gmail.com |
+| **Keagan Culligan**   | Frontend Developer  | University of Cape Town | keaganculligan8594 | keagan.chalmers@gmail.com |
 
 ## 🏫 Institution
 ``` c
 // TODO: Fill-in the name of the institution your
 // team is competing under.
+University of Cape Town
 ```
 
 ## 📧 Other Contact Info
-- GitHub Repo: <https://github.com/user-name/repo-name>
+- GitHub Repo: https://github.com/JordanMuller039/SomeRandomPeople
 - Other Info (if available): LinkedIn, Website, etc.
+Jordan Muller LinkedIn: https://www.linkedin.com/in/jordan-muller-410177292/
+Keagan Culligan LinkedIn: https://www.linkedin.com/in/keaganculligandatascientist/
