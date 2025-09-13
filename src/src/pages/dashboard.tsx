@@ -114,17 +114,17 @@ export default function Dashboard() {
     let cumulativePercentage = 0
     
     return (
-      <div className="bg-white dark:bg-gray-800 rounded-xl p-6 shadow-sm border border-gray-100 dark:border-gray-700 transition-all duration-300 hover:shadow-md">
-        <h3 className="text-lg font-semibold text-gray-800 dark:text-white mb-4">{title}</h3>
-        <div className="flex items-center justify-center">
-          <div className="relative w-32 h-32">
-            <svg className="w-full h-full transform -rotate-90" viewBox="0 0 36 36">
+      <div className="pie-chart-container">
+        <h3 className="pie-chart-title">{title}</h3>
+        <div className="pie-chart-content">
+          <div className="pie-chart-svg-container">
+            <svg className="pie-chart-svg" viewBox="0 0 36 36">
               <path
                 d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831"
                 fill="none"
                 stroke="#f3f4f6"
                 strokeWidth="2"
-                className="dark:stroke-gray-600"
+                className="pie-chart-background"
               />
               {data.map((item, index) => {
                 const percentage = (item.value / total) * 100
@@ -141,20 +141,20 @@ export default function Dashboard() {
                     strokeWidth="2"
                     strokeDasharray={strokeDasharray}
                     strokeDashoffset={strokeDashoffset}
-                    className="transition-all duration-300"
+                    className="pie-chart-segment"
                   />
                 )
               })}
             </svg>
           </div>
-          <div className="ml-6 space-y-2">
+          <div className="pie-chart-legend">
             {data.map((item, index) => (
-              <div key={index} className="flex items-center space-x-2">
+              <div key={index} className="pie-chart-legend-item">
                 <div 
-                  className="w-3 h-3 rounded-full" 
+                  className="pie-chart-legend-color" 
                   style={{ backgroundColor: item.color }}
                 />
-                <span className="text-sm text-gray-600 dark:text-gray-300">
+                <span className="pie-chart-legend-text">
                   {item.name}: {item.value}%
                 </span>
               </div>
@@ -171,10 +171,10 @@ export default function Dashboard() {
     const range = maxValue - minValue
     
     return (
-      <div className="bg-white dark:bg-gray-800 rounded-xl p-6 shadow-sm border border-gray-100 dark:border-gray-700 transition-all duration-300">
-        <h2 className="text-xl font-semibold text-gray-800 dark:text-white mb-6">JSE Accumulative Returns</h2>
-        <div className="h-64 mb-6">
-          <svg className="w-full h-full" viewBox="0 0 400 200">
+      <div className="line-chart-container">
+        <h2 className="line-chart-title">JSE Accumulative Returns</h2>
+        <div className="line-chart-svg-container">
+          <svg className="line-chart-svg" viewBox="0 0 400 200">
             <defs>
               <linearGradient id="gradient" x1="0%" y1="0%" x2="0%" y2="100%">
                 <stop offset="0%" stopColor="#0000CD" stopOpacity="0.3" />
@@ -192,7 +192,7 @@ export default function Dashboard() {
                 y2={i * 40}
                 stroke="#f3f4f6"
                 strokeWidth="1"
-                className="dark:stroke-gray-600"
+                className="line-chart-grid"
               />
             ))}
             
@@ -204,7 +204,7 @@ export default function Dashboard() {
               fill="none"
               stroke="#0000CD"
               strokeWidth="3"
-              className="transition-all duration-500"
+              className="line-chart-line"
             />
             
             {/* Fill area */}
@@ -213,7 +213,7 @@ export default function Dashboard() {
                 `${(i / (mockIndexData.length - 1)) * 400},${200 - ((d.value - minValue) / range) * 180}`
               ).join(' L ')} L 400,200 L 0,200 Z`}
               fill="url(#gradient)"
-              className="transition-all duration-500"
+              className="line-chart-area"
             />
             
             {/* Data points */}
@@ -224,22 +224,22 @@ export default function Dashboard() {
                 cy={200 - ((d.value - minValue) / range) * 180}
                 r="4"
                 fill="#0000CD"
-                className="transition-all duration-300 hover:r-6"
+                className="line-chart-point"
               />
             ))}
           </svg>
         </div>
         
         {/* Time range buttons */}
-        <div className="flex justify-center space-x-2">
+        <div className="time-range-buttons">
           {timeRanges.map((range) => (
             <button
               key={range}
               onClick={() => setSelectedTimeRange(range)}
-              className={`px-4 py-2 rounded-lg text-sm font-medium transition-all duration-200 ${
+              className={`time-range-button ${
                 selectedTimeRange === range
-                  ? 'bg-blue-600 text-white shadow-md'
-                  : 'bg-gray-100 dark:bg-gray-700 text-gray-600 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-600'
+                  ? 'time-range-button-active'
+                  : 'time-range-button-inactive'
               }`}
             >
               {range}
@@ -252,42 +252,40 @@ export default function Dashboard() {
 
   if (loading) {
     return (
-      <div className="flex items-center justify-center min-h-screen bg-gray-50 dark:bg-gray-900">
-        <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600"></div>
+      <div className="dashboard-loading">
+        <div className="loading-spinner"></div>
       </div>
     )
   }
 
   return (
-    <div className={`min-h-screen bg-gray-50 dark:bg-gray-900 transition-colors duration-300 ${darkMode ? 'dark' : ''}`}>
+    <div className={`dashboard-container ${darkMode ? 'dark' : ''}`}>
       {/* Sidebar */}
-      <div className={`fixed inset-y-0 left-0 z-50 bg-white dark:bg-gray-800 shadow-lg transition-all duration-300 ${
-        sidebarCollapsed ? 'w-16' : 'w-64'
-      }`}>
-        <div className="flex flex-col h-full">
+      <div className={`sidebar ${sidebarCollapsed ? 'sidebar-collapsed' : 'sidebar-expanded'}`}>
+        <div className="sidebar-inner">
           {/* Header with logo and collapse button */}
-          <div className="flex items-center justify-between p-4 border-b border-gray-200 dark:border-gray-700">
+          <div className="sidebar-header">
             {!sidebarCollapsed && (
-              <h1 className="text-xl font-semibold text-blue-600">Aurora</h1>
+              <h1 className="sidebar-logo">Aurora</h1>
             )}
             <button
               onClick={() => setSidebarCollapsed(!sidebarCollapsed)}
-              className="p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors"
+              className="sidebar-collapse-button"
             >
-              {sidebarCollapsed ? <Bars3Icon className="w-5 h-5" /> : <XMarkIcon className="w-5 h-5" />}
+              {sidebarCollapsed ? <Bars3Icon className="sidebar-icon" /> : <XMarkIcon className="sidebar-icon" />}
             </button>
           </div>
 
           {/* User Profile */}
-          <div className="p-4 border-b border-gray-200 dark:border-gray-700">
-            <div className="flex items-center space-x-3">
-              <UserCircleIcon className="w-10 h-10 text-gray-400" />
+          <div className="sidebar-profile">
+            <div className="sidebar-profile-content">
+              <UserCircleIcon className="sidebar-profile-avatar" />
               {!sidebarCollapsed && (
-                <div className="flex-1 min-w-0">
-                  <p className="text-sm font-medium text-gray-900 dark:text-white truncate">
+                <div className="sidebar-profile-info">
+                  <p className="sidebar-profile-name">
                     Welcome back!
                   </p>
-                  <p className="text-xs text-gray-500 dark:text-gray-400 truncate">
+                  <p className="sidebar-profile-email">
                     {user?.email}
                   </p>
                 </div>
@@ -296,20 +294,20 @@ export default function Dashboard() {
           </div>
 
           {/* Navigation */}
-          <nav className="flex-1 p-4">
-            <ul className="space-y-2">
+          <nav className="sidebar-nav">
+            <ul className="sidebar-nav-list">
               {navItems.map((item) => (
                 <li key={item.name}>
                   <a
                     href="#"
-                    className={`flex items-center space-x-3 px-3 py-2 rounded-lg transition-colors ${
+                    className={`sidebar-nav-link ${
                       item.active
-                        ? 'bg-blue-600 text-white shadow-md'
-                        : 'text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700'
+                        ? 'sidebar-nav-link-active'
+                        : 'sidebar-nav-link-inactive'
                     }`}
                   >
-                    <item.icon className="w-5 h-5" />
-                    {!sidebarCollapsed && <span className="text-sm font-medium">{item.name}</span>}
+                    <item.icon className="sidebar-nav-icon" />
+                    {!sidebarCollapsed && <span className="sidebar-nav-text">{item.name}</span>}
                   </a>
                 </li>
               ))}
@@ -317,68 +315,68 @@ export default function Dashboard() {
           </nav>
 
           {/* Bottom actions */}
-          <div className="p-4 border-t border-gray-200 dark:border-gray-700 space-y-2">
+          <div className="sidebar-actions">
             <button
               onClick={toggleDarkMode}
-              className="flex items-center space-x-3 w-full px-3 py-2 rounded-lg text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors"
+              className="sidebar-action-button"
             >
-              {darkMode ? <SunIcon className="w-5 h-5" /> : <MoonIcon className="w-5 h-5" />}
+              {darkMode ? <SunIcon className="sidebar-action-icon" /> : <MoonIcon className="sidebar-action-icon" />}
               {!sidebarCollapsed && (
-                <span className="text-sm font-medium">
+                <span className="sidebar-action-text">
                   {darkMode ? 'Light Mode' : 'Dark Mode'}
                 </span>
               )}
             </button>
             <button
               onClick={handleSignOut}
-              className="flex items-center space-x-3 w-full px-3 py-2 rounded-lg text-red-600 hover:bg-red-50 dark:hover:bg-red-900/20 transition-colors"
+              className="sidebar-signout-button"
             >
-              <ArrowRightOnRectangleIcon className="w-5 h-5" />
-              {!sidebarCollapsed && <span className="text-sm font-medium">Sign Out</span>}
+              <ArrowRightOnRectangleIcon className="sidebar-action-icon" />
+              {!sidebarCollapsed && <span className="sidebar-action-text">Sign Out</span>}
             </button>
           </div>
         </div>
       </div>
 
       {/* Main Content */}
-      <div className={`transition-all duration-300 ${sidebarCollapsed ? 'ml-16' : 'ml-64'}`}>
-        <div className="p-8">
+      <div className={`main-content ${sidebarCollapsed ? 'main-content-expanded' : 'main-content-normal'}`}>
+        <div className="main-content-inner">
           {/* Welcome Section */}
-          <div className="mb-8">
-            <h1 className="text-3xl font-light text-gray-900 dark:text-white mb-2">
+          <div className="welcome-section">
+            <h1 className="welcome-title">
               Good morning, {user?.email?.split('@')[0]}
             </h1>
-            <p className="text-gray-600 dark:text-gray-400">
+            <p className="welcome-subtitle">
               Here's your portfolio overview for today
             </p>
           </div>
 
           {/* Line Chart */}
-          <div className="mb-8">
+          <div className="chart-section">
             <LineChart />
           </div>
 
           {/* Risk Stats Section */}
-          <div className="mb-8">
-            <h2 className="text-2xl font-light text-gray-900 dark:text-white mb-6">Risk Stats</h2>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+          <div className="risk-stats-section">
+            <h2 className="risk-stats-title">Risk Stats</h2>
+            <div className="risk-stats-grid">
               <PieChart data={marketCapData} title="Market Cap Weighting" />
               <PieChart data={sectorData} title="Sector Breakdown" />
-              <div className="bg-white dark:bg-gray-800 rounded-xl p-6 shadow-sm border border-gray-100 dark:border-gray-700 transition-all duration-300 hover:shadow-md">
-                <h3 className="text-lg font-semibold text-gray-800 dark:text-white mb-4">Top Performers</h3>
-                <div className="space-y-4">
+              <div className="top-performers-container">
+                <h3 className="top-performers-title">Top Performers</h3>
+                <div className="top-performers-list">
                   {topPerformers.map((performer, index) => (
-                    <div key={index} className="flex items-center justify-between">
-                      <div className="flex items-center space-x-3">
+                    <div key={index} className="top-performer-item">
+                      <div className="top-performer-info">
                         <div 
-                          className="w-3 h-3 rounded-full" 
+                          className="top-performer-color" 
                           style={{ backgroundColor: performer.color }}
                         />
-                        <span className="text-sm font-medium text-gray-900 dark:text-white">
+                        <span className="top-performer-name">
                           {performer.name}
                         </span>
                       </div>
-                      <span className="text-sm font-semibold text-green-600">
+                      <span className="top-performer-return">
                         +{performer.return}%
                       </span>
                     </div>

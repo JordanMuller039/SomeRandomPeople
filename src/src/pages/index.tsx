@@ -89,19 +89,17 @@ export default function Home() {
 
   if (loading) {
     return (
-      <div className={`${geistSans.className} ${geistMono.className} font-sans flex items-center justify-center min-h-screen`}>
-        <div className="text-lg">Loading...</div>
+      <div className={`${geistSans.className} ${geistMono.className} loading-container`}>
+        <div className="loading-text">Loading...</div>
       </div>
     )
   }
 
   return (
-    <div
-      className={`${geistSans.className} ${geistMono.className} font-sans grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20`}
-    >
-      <main className="flex flex-col gap-[32px] row-start-2 items-center sm:items-start">
+    <div className={`${geistSans.className} ${geistMono.className} main-container`}>
+      <main className="main-content">
         <Image
-          className="dark:invert"
+          className="logo"
           src="/next.svg"
           alt="Next.js logo"
           width={180}
@@ -111,38 +109,38 @@ export default function Home() {
 
         {user ? (
           // User is logged in
-          <div className="flex flex-col gap-4 items-center">
-            <h1 className="text-2xl font-bold">Welcome back!</h1>
-            <p className="text-gray-600 dark:text-gray-400">
+          <div className="welcome-section">
+            <h1 className="welcome-title">Welcome back!</h1>
+            <p className="welcome-email">
               Logged in as: {user.email}
             </p>
             <button
               onClick={handleSignOut}
-              className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-red-600 text-white gap-2 hover:bg-red-700 font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5"
+              className="signout-button"
             >
               Sign Out
             </button>
             {message && (
-              <p className="text-green-600 dark:text-green-400 text-sm">
+              <p className="success-message">
                 {message}
               </p>
             )}
           </div>
         ) : (
           // User is not logged in - show auth form
-          <div className="flex flex-col gap-4 items-center w-full max-w-md">
-            <h1 className="text-2xl font-bold">
+          <div className="auth-section">
+            <h1 className="auth-title">
               {isLogin ? 'Sign In' : 'Create Account'}
             </h1>
             
-            <form onSubmit={handleAuth} className="flex flex-col gap-4 w-full">
+            <form onSubmit={handleAuth} className="auth-form">
               <input
                 type="email"
                 placeholder="Email"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 required
-                className="w-full px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-800 text-black dark:text-white focus:outline-none focus:ring-2 focus:ring-blue-500"
+                className="auth-input"
               />
               <input
                 type="password"
@@ -150,12 +148,12 @@ export default function Home() {
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
                 required
-                className="w-full px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-800 text-black dark:text-white focus:outline-none focus:ring-2 focus:ring-blue-500"
+                className="auth-input"
               />
               <button
                 type="submit"
                 disabled={loading}
-                className="w-full rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-blue-600 text-white gap-2 hover:bg-blue-700 disabled:opacity-50 font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5"
+                className="auth-submit-button"
               >
                 {loading ? 'Loading...' : (isLogin ? 'Sign In' : 'Sign Up')}
               </button>
@@ -166,7 +164,7 @@ export default function Home() {
                 setIsLogin(!isLogin)
                 setMessage('')
               }}
-              className="text-blue-600 dark:text-blue-400 hover:underline text-sm"
+              className="auth-toggle-button"
             >
               {isLogin 
                 ? "Don't have an account? Sign up" 
@@ -175,10 +173,10 @@ export default function Home() {
             </button>
 
             {message && (
-              <p className={`text-sm text-center ${
+              <p className={`auth-message ${
                 message.includes('error') || message.includes('Error') 
-                  ? 'text-red-600 dark:text-red-400' 
-                  : 'text-green-600 dark:text-green-400'
+                  ? 'error-message' 
+                  : 'success-message'
               }`}>
                 {message}
               </p>
@@ -186,23 +184,23 @@ export default function Home() {
           </div>
         )}
 
-        <ol className="font-mono list-inside list-decimal text-sm/6 text-center sm:text-left">
-          <li className="mb-2 tracking-[-.01em]">
+        <ol className="instructions-list">
+          <li className="instruction-item">
             Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] font-mono font-semibold px-1 py-0.5 rounded">
+            <code className="code-highlight">
               src/pages/index.tsx
             </code>
             .
           </li>
-          <li className="tracking-[-.01em]">
+          <li className="instruction-item-last">
             Save and see your changes instantly.
           </li>
         </ol>
       </main>
       
-      <footer className="row-start-3 flex gap-[24px] flex-wrap items-center justify-center">
+      <footer className="footer">
         <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
+          className="footer-link"
           href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=default-template-tw&utm_campaign=create-next-app"
           target="_blank"
           rel="noopener noreferrer"
@@ -217,7 +215,7 @@ export default function Home() {
           Learn
         </a>
         <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
+          className="footer-link"
           href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=default-template-tw&utm_campaign=create-next-app"
           target="_blank"
           rel="noopener noreferrer"
@@ -232,7 +230,7 @@ export default function Home() {
           Examples
         </a>
         <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
+          className="footer-link"
           href="https://nextjs.org?utm_source=create-next-app&utm_medium=default-template-tw&utm_campaign=create-next-app"
           target="_blank"
           rel="noopener noreferrer"
