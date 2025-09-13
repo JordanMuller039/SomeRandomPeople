@@ -61,6 +61,7 @@ export default function Home() {
         })
         if (error) throw error
         setMessage('Successfully signed in!')
+        window.location.href = '/dashboard'
       } else {
         // Sign up
         const { error } = await supabase.auth.signUp({
