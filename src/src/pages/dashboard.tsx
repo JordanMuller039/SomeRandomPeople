@@ -39,23 +39,23 @@ const mockIndexData = [
 const timeRanges = ['1M', '1Yr', 'YTD', '3Yr', 'All Time']
 
 const marketCapData = [
-  { name: 'Large Cap', value: 65, color: '#0000CD' },
-  { name: 'Mid Cap', value: 25, color: '#4169E1' },
-  { name: 'Small Cap', value: 10, color: '#87CEEB' },
+  { name: 'Large Cap', value: 65, color: '#FF5630' },
+  { name: 'Mid Cap', value: 25, color: '#FF7A5C' },
+  { name: 'Small Cap', value: 10, color: '#FFB3A6' },
 ]
 
 const sectorData = [
-  { name: 'Technology', value: 28, color: '#0000CD' },
-  { name: 'Healthcare', value: 22, color: '#4169E1' },
-  { name: 'Financial', value: 18, color: '#6495ED' },
-  { name: 'Energy', value: 15, color: '#87CEEB' },
-  { name: 'Others', value: 17, color: '#B0C4DE' },
+  { name: 'Technology', value: 28, color: '#FF5630' },
+  { name: 'Healthcare', value: 22, color: '#FF7A5C' },
+  { name: 'Financial', value: 18, color: '#FF9985' },
+  { name: 'Energy', value: 15, color: '#FFB3A6' },
+  { name: 'Others', value: 17, color: '#FFCCC7' },
 ]
 
 const topPerformers = [
-  { name: 'TechCorp', return: 28.5, color: '#0000CD' },
-  { name: 'MedLife', return: 22.3, color: '#4169E1' },
-  { name: 'GreenEnergy', return: 19.8, color: '#6495ED' },
+  { name: 'TechCorp', return: 28.5, color: '#FF5630' },
+  { name: 'MedLife', return: 22.3, color: '#FF7A5C' },
+  { name: 'GreenEnergy', return: 19.8, color: '#FF9985' },
 ]
 
 export default function Dashboard() {
