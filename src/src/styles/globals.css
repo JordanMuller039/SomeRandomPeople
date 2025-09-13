@@ -1505,6 +1505,156 @@
   color: #d1d5db;
 }
 
+/* Profile Progress Bar */
+.aurora-progress-section-profile {
+  width: 100%;
+  margin-top: 1rem;
+}
+
+.aurora-level-info {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0.5rem;
+}
+
+.aurora-level-text {
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: #FF5630;
+  font-family: 'Afacad', sans-serif;
+}
+
+.aurora-points-text {
+  font-size: 0.75rem;
+  font-weight: 500;
+  color: rgb(107 114 128);
+}
+
+.aurora-dashboard.dark .aurora-points-text {
+  color: rgb(156 163 175);
+}
+
+.aurora-progress-bar {
+  width: 100%;
+  height: 6px;
+  background-color: rgb(229 231 235);
+  border-radius: 3px;
+  overflow: hidden;
+}
+
+.aurora-dashboard.dark .aurora-progress-bar {
+  background-color: rgb(75 85 99);
+}
+
+.aurora-progress-fill {
+  height: 100%;
+  background: linear-gradient(90deg, #FF5630 0%, #FF7A5C 100%);
+  border-radius: 3px;
+  transition: width 1s ease-in-out;
+}
+
+/* Achievement Badges */
+.aurora-badges-section {
+  margin-top: 1.5rem;
+}
+
+.aurora-badges-title {
+  font-family: 'Afacad', sans-serif;
+  font-size: 1rem;
+  font-weight: 600;
+  color: rgb(17 24 39);
+  margin-bottom: 0.75rem;
+}
+
+.aurora-dashboard.dark .aurora-badges-title {
+  color: rgb(255 255 255);
+}
+
+.aurora-badges-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0.75rem;
+}
+
+.aurora-badge {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 0.75rem 0.5rem;
+  border-radius: 0.75rem;
+  transition: all 0.3s ease;
+  cursor: pointer;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.aurora-badge:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+}
+
+.aurora-badge-icon {
+  width: 1.25rem;
+  height: 1.25rem;
+  margin-bottom: 0.25rem;
+  color: white;
+}
+
+.aurora-badge-text {
+  font-family: 'Afacad', sans-serif;
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: white;
+  text-align: center;
+  line-height: 1.2;
+}
+
+/* Badge Color Variants */
+.aurora-badge-green {
+  background: linear-gradient(135deg, #22C55E 0%, #16A34A 100%);
+}
+
+.aurora-badge-orange {
+  background: linear-gradient(135deg, #FF5630 0%, #E8471C 100%);
+}
+
+.aurora-badge-gold {
+  background: linear-gradient(135deg, #F59E0B 0%, #D97706 100%);
+}
+
+.aurora-badge-blue {
+  background: linear-gradient(135deg, #3B82F6 0%, #2563EB 100%);
+}
+
+.aurora-badge-purple {
+  background: linear-gradient(135deg, #8B5CF6 0%, #7C3AED 100%);
+}
+
+.aurora-badge-red {
+  background: linear-gradient(135deg, #EF4444 0%, #DC2626 100%);
+}
+
+/* Responsive adjustments */
+@media (max-width: 1024px) {
+  .aurora-badges-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 768px) {
+  .aurora-badges-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+  
+  .aurora-badge {
+    padding: 0.5rem 0.25rem;
+  }
+  
+  .aurora-badge-text {
+    font-size: 0.625rem;
+  }
+}
+
 /* ========================================
    DAILY CHALLENGES PAGE STYLES
    ======================================== */

@@ -419,50 +419,101 @@ export default function Dashboard() {
       <div className="aurora-main-content">
         <div className="aurora-content-inner">
           {/* User Profile Card */}
-          <div className="aurora-profile-card">
-            <div className="aurora-profile-left">
-              <div className="aurora-profile-avatar-large">
-                <UserCircleIcon className="aurora-avatar-large-icon" />
-              </div>
-              <div className="aurora-level-badge">
-                <StarIcon className="aurora-star-icon" />
-                <span>{userProfile.level}</span>
-              </div>
-            </div>
-            
-            <div className="aurora-profile-center">
-              <h3 className="aurora-bio-title">Bio:</h3>
-              <p className="aurora-bio-text">{userProfile.bio}</p>
-              <div className="aurora-profile-details">
-                <div className="aurora-detail-item">
-                  <BriefcaseIcon className="aurora-detail-icon" />
-                  <span>{userProfile.job}</span>
-                </div>
-                <div className="aurora-detail-item">
-                  <MapPinIcon className="aurora-detail-icon" />
-                  <span>{userProfile.location}</span>
-                </div>
-                <div className="aurora-detail-item">
-                  <CalendarIcon className="aurora-detail-icon" />
-                  <span>{userProfile.since}</span>
-                </div>
-              </div>
-            </div>
-            
-            <div className="aurora-profile-right">
-              <h3 className="aurora-follow-title">Follow Me!</h3>
-              <div className="aurora-social-links">
-                <div className="aurora-social-item">
-                  <span className="aurora-linkedin-icon">in</span>
-                  <span>{userProfile.linkedin}</span>
-                </div>
-                <div className="aurora-social-item">
-                  <span className="aurora-github-icon">GitHub</span>
-                  <span>{userProfile.github}</span>
-                </div>
-              </div>
-            </div>
-          </div>
+          {/* User Profile Card */}
+<div className="aurora-profile-card">
+  <div className="aurora-profile-left">
+    <div className="aurora-profile-avatar-large">
+      <UserCircleIcon className="aurora-avatar-large-icon" />
+    </div>
+    <div className="aurora-level-badge">
+      <StarIcon className="aurora-star-icon" />
+      <span>{userProfile.level}</span>
+    </div>
+    
+    {/* Progress Bar Section */}
+    <div className="aurora-progress-section-profile">
+      <div className="aurora-level-info">
+        <span className="aurora-level-text">Level 1</span>
+        <span className="aurora-points-text">100/200 XP to Level 2</span>
+      </div>
+      <div className="aurora-progress-bar">
+        <div 
+          className="aurora-progress-fill" 
+          style={{ width: '50%' }}
+        />
+      </div>
+    </div>
+  </div>
+  
+  <div className="aurora-profile-center">
+    <h3 className="aurora-bio-title">Bio:</h3>
+    <p className="aurora-bio-text">{userProfile.bio}</p>
+    <div className="aurora-profile-details">
+      <div className="aurora-detail-item">
+        <BriefcaseIcon className="aurora-detail-icon" />
+        <span>{userProfile.job}</span>
+      </div>
+      <div className="aurora-detail-item">
+        <MapPinIcon className="aurora-detail-icon" />
+        <span>{userProfile.location}</span>
+      </div>
+      <div className="aurora-detail-item">
+        <CalendarIcon className="aurora-detail-icon" />
+        <span>{userProfile.since}</span>
+      </div>
+    </div>
+
+    {/* Achievement Badges */}
+    <div className="aurora-badges-section">
+      <h4 className="aurora-badges-title">Achievements:</h4>
+      <div className="aurora-badges-grid">
+        <div className="aurora-badge aurora-badge-green">
+          <UserGroupIcon className="aurora-badge-icon" />
+          <span className="aurora-badge-text">Onboarded</span>
+        </div>
+        
+        <div className="aurora-badge aurora-badge-orange">
+          <CalendarIcon className="aurora-badge-icon" />
+          <span className="aurora-badge-text">7-Day Streak</span>
+        </div>
+        
+        <div className="aurora-badge aurora-badge-gold">
+          <StarIcon className="aurora-badge-icon" />
+          <span className="aurora-badge-text">Never Wrong!</span>
+        </div>
+        
+        <div className="aurora-badge aurora-badge-blue">
+          <AcademicCapIcon className="aurora-badge-icon" />
+          <span className="aurora-badge-text">Quick Learner</span>
+        </div>
+        
+        <div className="aurora-badge aurora-badge-purple">
+          <ChartBarIcon className="aurora-badge-icon" />
+          <span className="aurora-badge-text">Risk Master</span>
+        </div>
+        
+        <div className="aurora-badge aurora-badge-red">
+          <BriefcaseIcon className="aurora-badge-icon" />
+          <span className="aurora-badge-text">Market Expert</span>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <div className="aurora-profile-right">
+    <h3 className="aurora-follow-title">Follow Me!</h3>
+    <div className="aurora-social-links">
+      <div className="aurora-social-item">
+        <span className="aurora-linkedin-icon">in</span>
+        <span>{userProfile.linkedin}</span>
+      </div>
+      <div className="aurora-social-item">
+        <span className="aurora-github-icon">GitHub</span>
+        <span>{userProfile.github}</span>
+      </div>
+    </div>
+  </div>
+</div>
 
           {/* Points Chart and Activity Chart */}
           <div className="aurora-charts-section">
