@@ -13,20 +13,16 @@ This document lists all **third-party repositories, modules, libraries, framewor
 ## 📦 Libraries, Frameworks & Submodules
 | Name                 | Link / Repo                                           | Author(s)       | Usage                  |
 |----------------------|-------------------------------------------------------|-----------------|------------------------|
-| IntricatePointers    | https://github.com/DnA-IntRicate/IntricatePointers    | Adam Foflonker  | Memory management      |
-| fast_obj             | https://github.com/thisistherk/fast_obj               | Richard Knight  | Parsing OBJ files      |
+| react.js             | https://react.dev/                                    | Jordan Walke    | Frontend development   |
+| next.js              | https://nextjs.org/                                   | Vercel          | Backend development    |
+| typescript           | https://www.typescriptlang.org/docs/                  |Anders Hejlsberg | Frontend styling       |
 
 ---
 
 ## 🌐 APIs & Services
 | Name          | Link / Docs                        | Author(s)      | Usage                             |
 |---------------|------------------------------------|----------------|-----------------------------------|
-| OpenWeather   | https://openweathermap.org/api     | Open Weather   | Fetching weather data             |
-| Stripe        | https://stripe.com/docs/api        | Stripe         | Payment handling                  |
-
----
-
-## 📊 Datasets
-| Name          | Source                              | Usage                             |
-|---------------|-------------------------------------|-----------------------------------|
-| MNIST         | http://yann.lecun.com/exdb/mnist/   | Training/testing machine learning |
+| Supabase      | https://supabase.com/              | Supabase       | Login Authentication              |
+| Cursor        | https://cursor.com/                | Cursor         | AI Coding Helper                  |
+| Claude        | https://claude.ai/                 | Anthropic      | AI Coding Helper                  |
+| Flaticon      | https://www.flaticon.com/          | Flaticon       | All icons used in frontend        |
