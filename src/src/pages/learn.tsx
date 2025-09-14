@@ -115,7 +115,7 @@ export default function Learn() {
               </li>
               <li>
                 <a
-                  href="#"
+                  href="/friends"
                   className="aurora-nav-link aurora-nav-link-inactive"
                 >
                   <UserGroupIcon className="aurora-nav-icon" />

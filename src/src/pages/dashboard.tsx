@@ -386,6 +386,7 @@ export default function Dashboard() {
                     href={
                       item.name === 'Daily Challenges' ? '/daily_challenges' :
                       item.name === 'Learn' ? '/learn' :
+                      item.name === 'Friends' ? '/friends' :
                       '#'
                     }
                     className={`aurora-nav-link ${
