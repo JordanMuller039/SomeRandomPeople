@@ -33,7 +33,11 @@ SOFTWARE.</p>
 
 
 
-<h2>Contact</h2> <p> Project Link: https://github.com/your-username/aurora <br> <a href="#top">(Back to Top)</a> </p>
+<h2>Contact</h2> <p> Project Link: (https://github.com/JordanMuller039/SomeRandomPeople.git) <br><br>
+    Emails: <br>
+    Jordan.muller039@gmail.com <br>
+    Keagan.chalmers@gmail.com
+    </p>
 
 
 
