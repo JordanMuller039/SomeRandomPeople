@@ -28,8 +28,8 @@
 // TODO: Link your demo video and PowerPoint here
 ```
 Check out the Demos: 
-- [Demo Video](/Users/keaganculligan/Desktop/Personal/Hackathon/SomeRandomPeople/demo/SomeRandomPeople_Aurora_Demo.mkv)
-- [Demo Presentation](../demo/demo.pptx)
+- [Demo Video](SomeRandomPeople/demo/SomeRandomPeople_Aurora_Demo.mkv)
+- [Demo Presentation](SomeRandomPeople/demo/SomeRandomPeople_Aurora_Demo.mkv)
 
 ## 📌 Notes
 ``` c
